@@ -14,65 +14,78 @@ Instapaper offers full support for all methods exposed through the Full API.
 Configuration
 -------------
 
+
+
+Bookmark Operations
+-------------------
+
 Retrieve a list of bookmarks:
+
 ```ruby
 Instapaper.bookmarks
 ```
 
 Add a new bookmark:
+
 ```ruby
 Instapaper.add_bookmark('http://someurl.com', :title => 'This is the title', :description => 'This is the description')
 ```
 
 Remove a bookmark:
+
 ```ruby
 Instapaper.delete_bookmark(bookmark_id)
 ```
 
 Update read progress:
+
 ```ruby
 Instapaper.update_read_progress(bookmark_id, 0.5)
 ```
 
 Star/Un-star a bookmark:
+
 ```ruby
 Instapaper.star(bookmark_id)
 Instapaper.unstar(bookmark_id)
 ```
 
 Archive/Un-archive a bookmark:
+
 ```ruby
 Instapaper.archive(bookmark_id)
 Instapaper.unarchive(bookmark_id)
 ```
 
 Move a bookmark to a folder:
+
 ```ruby
 Instapaper.move(bookmark_id, folder_id)
 ```
 
 Obtain the text of a bookmark:
+
 ```ruby
 Instapaper.text(bookmark_id)
 ```
-
-Bookmark Operations
--------------------
 
 Folder Operations
 -----------------
 
 To obtain the list of folders:
+
 ```ruby
 Instapaper.folders
 ```
 
 You can add by passing a name:
+
 ```ruby
 Instapaper.add_folder('eventmachine')
 ```
 
 And remove folders by referencing a folder by it's id.
+
 ```ruby
 Instapaper.delete_folder(folder_id)
 ```
@@ -84,11 +97,13 @@ Other Operations
 ----------------
 
 To obtain an access token via xAuth:
+
 ```ruby
 Instapaper.access_token(username, password)
 ```
 
 You can also verify credentials once you have received tokens:
+
 ```ruby
 Instapaper.verify_credentials
 ```
@@ -97,6 +112,7 @@ Restrictions
 ------------
 
 Users without an Instapaper Subscription may only invoke the following calls:
+
 ```ruby
 Instapaper.access_token
 Instapaper.verify_credentials
