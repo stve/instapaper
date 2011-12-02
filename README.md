@@ -9,12 +9,34 @@ Installation
 Usage
 -----
 
-Instapaper offers full support for all methods exposed through the Full API.
+Instapaper offers full support for all methods exposed through the Full API.  Note that Instapaer does not support the request-token/authorize workflow.  To obtain an access token, use the `access_token` method.
 
 Configuration
 -------------
 
+```ruby
+Instapaper.configure do |config|
+  config.consumer_key = YOUR_CONSUMER_KEY
+  config.consumer_secret = YOUR_CONSUMER_SECRET
+  config.oauth_token = YOUR_OAUTH_TOKEN
+  config.oauth_token_secret = YOUR_OAUTH_TOKEN_SECRET
+end
+```
 
+Authentication
+--------------
+
+To obtain an access token via xAuth:
+
+```ruby
+Instapaper.access_token(username, password)
+```
+
+You can also verify credentials once you have received tokens:
+
+```ruby
+Instapaper.verify_credentials
+```
 
 Bookmark Operations
 -------------------
@@ -90,22 +112,10 @@ And remove folders by referencing a folder by it's id.
 Instapaper.delete_folder(folder_id)
 ```
 
-Lastly, the folders can be reordered by
-
-
-Other Operations
-----------------
-
-To obtain an access token via xAuth:
+Lastly, the folders can be reordered:
 
 ```ruby
-Instapaper.access_token(username, password)
-```
-
-You can also verify credentials once you have received tokens:
-
-```ruby
-Instapaper.verify_credentials
+Instapaper.set_order(['folder_id1:2','folder_id2:1'])
 ```
 
 Restrictions
