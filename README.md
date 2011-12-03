@@ -1,18 +1,16 @@
-Instapaper
-=========
+# Instapaper
+
 Instapaper is a ruby wrapper for interacting with [Instapaper's Full Developer API](http://www.instapaper.com/api/full).  Note that access to the Full API is restricted to Instapaper subscribers only.
 
-Installation
-------------
+## Installation
+
     gem install instapaper
 
-Usage
------
+## Usage
 
 Instapaper offers full support for all methods exposed through the Full API.  Note that Instapaer does not support the request-token/authorize workflow.  To obtain an access token, use the `access_token` method.
 
-Configuration
--------------
+## Configuration
 
 ```ruby
 Instapaper.configure do |config|
@@ -23,8 +21,7 @@ Instapaper.configure do |config|
 end
 ```
 
-Authentication
---------------
+## Authentication
 
 To obtain an access token via xAuth:
 
@@ -38,8 +35,7 @@ You can also verify credentials once you have received tokens:
 Instapaper.verify_credentials
 ```
 
-Bookmark Operations
--------------------
+## Bookmark Operations
 
 Retrieve a list of bookmarks:
 
@@ -91,8 +87,8 @@ Obtain the text of a bookmark:
 Instapaper.text(bookmark_id)
 ```
 
-Folder Operations
------------------
+## Folder Operations
+
 
 To obtain the list of folders:
 
@@ -118,8 +114,7 @@ Lastly, the folders can be reordered:
 Instapaper.set_order(['folder_id1:2','folder_id2:1'])
 ```
 
-Restrictions
-------------
+## Restrictions
 
 Users without an Instapaper Subscription may only invoke the following calls:
 
@@ -130,13 +125,21 @@ Instapaper.add_bookmark
 Instapaper.folders
 ```
 
-Documentation
--------------
+## <a name="ci"></a>Build Status
+[![Build Status](https://secure.travis-ci.org/spagalloco/instapaper.png)][ci]
+
+[ci]: http://travis-ci.org/spagalloco/instapaper
+
+## <a name="dependencies"></a>Dependency Status
+[![Dependency Status](https://gemnasium.com/spagalloco/instapaper.png)][gemnasium]
+
+[gemnasium]: https://gemnasium.com/spagalloco/instapaper
+
+## Documentation
 
 [http://rdoc.info/gems/instapaper](http://rdoc.info/gems/instapaper)
 
-Note on Patches/Pull Requests
------------------------------
+## Contributing
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -146,7 +149,6 @@ Note on Patches/Pull Requests
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-Copyright
----------
+## Copyright
 
 Copyright (c) 2011 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/instapaper/blob/master/LICENSE.md) for details.
