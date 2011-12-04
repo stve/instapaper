@@ -125,15 +125,16 @@ Instapaper.add_bookmark
 Instapaper.folders
 ```
 
-## <a name="ci"></a>Build Status
-[![Build Status](https://secure.travis-ci.org/spagalloco/instapaper.png)][ci]
+## <a name="build"></a>Build Status
+[![Build Status](https://secure.travis-ci.org/spagalloco/instapaper.png?branch=master)][travis]
 
-[ci]: http://travis-ci.org/spagalloco/instapaper
+[travis]: http://travis-ci.org/spagalloco/instapaper
 
 ## <a name="dependencies"></a>Dependency Status
-[![Dependency Status](https://gemnasium.com/spagalloco/instapaper.png)][gemnasium]
+[![Dependency Status](https://gemnasium.com/spagalloco/instapaper.png?travis)][gemnasium]
 
 [gemnasium]: https://gemnasium.com/spagalloco/instapaper
+
 
 ## Documentation
 
