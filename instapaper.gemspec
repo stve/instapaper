@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "instapaper/version"
+require File.expand_path('../lib/instapaper/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name        = "instapaper"
@@ -14,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'kramdown'
-  gem.add_development_dependency 'rspec', '~2'
+  gem.add_development_dependency 'rspec', '~> 2'
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'yard'
   gem.add_development_dependency 'json'
