@@ -12,13 +12,13 @@ Gem::Specification.new do |gem|
   gem.summary     = %q{Ruby Instapaper Client}
   gem.description = %q{Ruby Instapaper Client}
 
-  gem.add_development_dependency('rake', '~> 0.9')
-  gem.add_development_dependency('rdiscount', '~> 1.6')
-  gem.add_development_dependency('rspec', '~> 2.7')
-  gem.add_development_dependency('simplecov', '~> 0.5')
-  gem.add_development_dependency('yard', '~> 0.7')
-  gem.add_development_dependency('json', '>= 0')
-  gem.add_development_dependency('webmock', '~> 1.7')
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'kramdown'
+  gem.add_development_dependency 'rspec', '~2'
+  gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'yard'
+  gem.add_development_dependency 'json'
+  gem.add_development_dependency 'webmock'
 
   gem.add_runtime_dependency('faraday_middleware', '~> 0.7')
   gem.add_runtime_dependency('multi_json', '~> 1')
