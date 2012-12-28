@@ -1,5 +1,13 @@
-require 'simplecov'
-require File.expand_path('../../lib/instapaper', __FILE__)
+unless ENV['CI']
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter '.bundle'
+    add_group 'Instapaper', 'lib/instapaper'
+    add_group 'Specs', 'spec'
+  end
+end
+
+require 'instapaper'
 require 'rspec'
 require 'webmock/rspec'
 
