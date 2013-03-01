@@ -61,7 +61,7 @@ describe Instapaper::Client::Bookmark do
 
     it "should get the correct resource" do
       @client.add_bookmark('http://someurl.com', :title => 'This is the title', :description => 'This is the description')
-      a_post("bookmarks/add").with(:body => {:url => "http://someurl.com", :title => 'This is the title', :description => 'This is the description' }).
+      a_post("bookmarks/add").with(:body => {:url => "http://someurl.com", :title => 'This+is+the+title', :description => 'This+is+the+description' }).
         should have_been_made
     end
 
