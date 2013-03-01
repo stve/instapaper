@@ -11,7 +11,7 @@ group :test do
   gem 'json', :platforms => :ruby_18
   gem 'rspec'
   gem 'timecop'
-  gem 'webmock', '>= 1.10'
+  gem 'webmock', '>= 1.10.1'
 end
 
 gemspec
