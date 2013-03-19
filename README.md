@@ -8,7 +8,7 @@ Instapaper is a ruby wrapper for interacting with [Instapaper's Full Developer A
 
 ## Usage
 
-Instapaper offers full support for all methods exposed through the Full API.  Note that Instapaer does not support the request-token/authorize workflow.  To obtain an access token, use the `access_token` method.
+Instapaper offers full support for all methods exposed through the Full API.  Note that Instapaper does not support the request-token/authorize workflow.  To obtain an access token, use the `access_token` method.
 
 ## Configuration
 
