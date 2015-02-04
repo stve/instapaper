@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'rake'
 gem 'yard'
@@ -9,7 +9,7 @@ end
 
 group :test do
   gem 'json', :platforms => :ruby_18
-  gem 'rspec'
+  gem 'rspec', '~> 2.99'
   gem 'timecop'
   gem 'webmock', '>= 1.10.1'
 end
