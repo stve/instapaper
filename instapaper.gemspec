@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.author        = 'Steve Agalloco'
   spec.description   = "Ruby Client for Instapaper's Full API"
   spec.email         = 'steve.agalloco@gmail.com'
-  spec.files         = `git ls-files`.split("\n")
+  spec.files         = %w(LICENSE.md README.md instapaper.gemspec) + Dir['lib/**/*.rb']
   spec.homepage      = 'https://github.com/stve/instapaper'
   spec.licenses      = %w(MIT)
   spec.name          = 'instapaper'
