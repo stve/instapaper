@@ -9,7 +9,7 @@ describe Faraday::Response do
    1251, 1252, 1500, 1550].each do |status|
     context "when HTTP status is #{status}" do
       before do
-        stub_post('folders/list').to_return(status: status)
+        stub_post('/api/1/folders/list').to_return(status: status)
       end
 
       it 'should raise Instapaper::Error error' do
