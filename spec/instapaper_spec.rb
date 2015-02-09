@@ -7,7 +7,7 @@ describe Instapaper do
 
   describe '.respond_to?' do
     it 'takes an optional include private argument' do
-      Instapaper.respond_to?(:client, true).should be_true
+      Instapaper.respond_to?(:client, true).should be true
     end
   end
 

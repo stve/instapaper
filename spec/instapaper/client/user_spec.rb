@@ -22,14 +22,14 @@ describe Instapaper::Client::User do
     it "should return the a hash containing an oauth token and secret" do
       tokens = @client.access_token('ohai', 'p455w0rd')
       tokens.should be_a Hash
-      tokens.key?('oauth_token').should be_true
-      tokens.key?('oauth_token_secret').should be_true
+      tokens.key?('oauth_token').should be true
+      tokens.key?('oauth_token_secret').should be true
     end
 
     it "should return a hash containing the error on invalid credentials" do
       tokens = @client.access_token('inval1d', 'cr3dentials')
       tokens.should be_a Hash
-      tokens.key?('error').should be_true
+      tokens.key?('error').should be true
     end
   end
 
