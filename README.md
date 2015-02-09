@@ -152,4 +152,4 @@ Instapaper.folders
 
 ## Copyright
 
-Copyright (c) 2011 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/instapaper/blob/master/LICENSE.md) for details.
+Copyright (c) 2015 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/instapaper/blob/master/LICENSE.md) for details.
