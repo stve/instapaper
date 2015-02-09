@@ -8,7 +8,7 @@ describe Instapaper::Client::Folder do
   describe '.folders' do
     before do
       stub_post('folders/list')
-        .to_return(body: fixture('folders_list.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('folders_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
@@ -28,8 +28,8 @@ describe Instapaper::Client::Folder do
 
   describe '.add_folder' do
     before do
-      stub_post('folders/add').with(body: { title: 'Ruby' })
-        .to_return(body: fixture('folders_add.json'), headers: { content_type: 'application/json; charset=utf-8' })
+      stub_post('folders/add').with(body: {title: 'Ruby'})
+        .to_return(body: fixture('folders_add.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
@@ -49,8 +49,8 @@ describe Instapaper::Client::Folder do
 
   describe '.delete_folder' do
     before do
-      stub_post('folders/delete'). with(body: { folder_id: '1' })
-        .to_return(body: fixture('folders_delete.json'), headers: { content_type: 'application/json; charset=utf-8' })
+      stub_post('folders/delete'). with(body: {folder_id: '1'})
+        .to_return(body: fixture('folders_delete.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
@@ -68,8 +68,8 @@ describe Instapaper::Client::Folder do
 
   describe '.set_order' do
     before do
-      stub_post('folders/set_order'). with(body: { order: '1121173:2,1121174:1' })
-        .to_return(body: fixture('folders_set_order.json'), headers: { content_type: 'application/json; charset=utf-8' })
+      stub_post('folders/set_order'). with(body: {order: '1121173:2,1121174:1'})
+        .to_return(body: fixture('folders_set_order.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do

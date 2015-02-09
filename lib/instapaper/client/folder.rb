@@ -2,7 +2,7 @@ module Instapaper
   class Client
     # Defines methods related to folders
     module Folder
-      # List the account’s user-created folders.
+      # List the account's user-created folders.
       # @note This only includes organizational folders and does not include RSS-feed folders or starred-subscription folders
       def folders
         post('folders/list')
@@ -20,7 +20,7 @@ module Instapaper
         post('folders/delete', folder_id: folder_id)
       end
 
-      # Re-orders a user’s folders.
+      # Re-orders a user's folders.
       # @param order [Array] An array of folder_id:position pairs joined by commas.
       # @example Ordering folder_ids 100, 200, and 300
       #   Instapaper.set_order(['100:1','200:2','300:3'])

@@ -8,7 +8,7 @@ describe Instapaper::Client::Bookmark do
   describe '.bookmarks' do
     before do
       stub_post('bookmarks/list')
-        .to_return(body: fixture('bookmarks_list.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
@@ -36,12 +36,12 @@ describe Instapaper::Client::Bookmark do
     before do
       @time = Time.now
       stub_post('bookmarks/update_read_progress')
-        .to_return(body: fixture('bookmarks_update_read_progress.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_update_read_progress.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.update_read_progress(123, 0.5, @time)
-      expect(a_post('bookmarks/update_read_progress').with(body: { bookmark_id: '123', progress: '0.5', progress_timestamp: @time.to_i.to_s }))
+      expect(a_post('bookmarks/update_read_progress').with(body: {bookmark_id: '123', progress: '0.5', progress_timestamp: @time.to_i.to_s}))
         .to have_been_made
     end
 
@@ -56,12 +56,12 @@ describe Instapaper::Client::Bookmark do
   describe '.add_bookmark' do
     before do
       stub_post('bookmarks/add')
-        .to_return(body: fixture('bookmarks_add.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_add.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
-      expect(a_post('bookmarks/add').with(body: { url: 'http://someurl.com', title: 'This is the title', description: 'This is the description' }))
+      expect(a_post('bookmarks/add').with(body: {url: 'http://someurl.com', title: 'This is the title', description: 'This is the description'}))
         .to have_been_made
     end
 
@@ -75,12 +75,12 @@ describe Instapaper::Client::Bookmark do
   describe '.delete_bookmark' do
     before do
       stub_post('bookmarks/delete')
-        .to_return(body: '[]', headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: '[]', headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.delete_bookmark(123)
-      expect(a_post('bookmarks/delete').with(body: { bookmark_id: '123' }))
+      expect(a_post('bookmarks/delete').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -94,12 +94,12 @@ describe Instapaper::Client::Bookmark do
   describe '.star' do
     before do
       stub_post('bookmarks/star')
-        .to_return(body: fixture('bookmarks_star.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_star.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.star(123)
-      expect(a_post('bookmarks/star').with(body: { bookmark_id: '123' }))
+      expect(a_post('bookmarks/star').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -118,12 +118,12 @@ describe Instapaper::Client::Bookmark do
   describe '.unstar' do
     before do
       stub_post('bookmarks/unstar')
-        .to_return(body: fixture('bookmarks_unstar.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_unstar.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.unstar(123)
-      expect(a_post('bookmarks/unstar').with(body: { bookmark_id: '123' }))
+      expect(a_post('bookmarks/unstar').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -142,12 +142,12 @@ describe Instapaper::Client::Bookmark do
   describe '.archive' do
     before do
       stub_post('bookmarks/archive')
-        .to_return(body: fixture('bookmarks_archive.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_archive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.archive(123)
-      expect(a_post('bookmarks/archive').with(body: { bookmark_id: '123' }))
+      expect(a_post('bookmarks/archive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -165,12 +165,12 @@ describe Instapaper::Client::Bookmark do
   describe '.unarchive' do
     before do
       stub_post('bookmarks/unarchive')
-        .to_return(body: fixture('bookmarks_unarchive.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_unarchive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.unarchive(123)
-      expect(a_post('bookmarks/unarchive').with(body: { bookmark_id: '123' }))
+      expect(a_post('bookmarks/unarchive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -188,12 +188,12 @@ describe Instapaper::Client::Bookmark do
   describe '.move' do
     before do
       stub_post('bookmarks/move')
-        .to_return(body: fixture('bookmarks_move.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_move.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.move(123, 12_345)
-      expect(a_post('bookmarks/move').with(body: { bookmark_id: '123', folder_id: '12345' }))
+      expect(a_post('bookmarks/move').with(body: {bookmark_id: '123', folder_id: '12345'}))
         .to have_been_made
     end
 
@@ -211,12 +211,12 @@ describe Instapaper::Client::Bookmark do
   describe '.text' do
     before do
       stub_post('bookmarks/get_text')
-        .to_return(body: fixture('bookmarks_get_text.txt'), headers: { content_type: 'text/html; charset=utf-8' })
+        .to_return(body: fixture('bookmarks_get_text.txt'), headers: {content_type: 'text/html; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
       @client.text(123)
-      expect(a_post('bookmarks/get_text').with(body: { bookmark_id: '123' }))
+      expect(a_post('bookmarks/get_text').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 

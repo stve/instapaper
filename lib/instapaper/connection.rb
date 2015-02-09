@@ -12,7 +12,6 @@ module Instapaper
                                                   'User-Agent' => user_agent
                                                 },
                                                 proxy: proxy,
-                                                ssl: { verify: false },
                                                 url: api_endpoint)
 
       Faraday.new(merged_options) do |builder|

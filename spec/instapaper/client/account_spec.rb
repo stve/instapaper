@@ -8,7 +8,7 @@ describe Instapaper::Client::Account do
   describe '.verify_credentials' do
     before do
       stub_post('account/verify_credentials')
-        .to_return(body: fixture('verify_credentials.json'), headers: { content_type: 'application/json; charset=utf-8' })
+        .to_return(body: fixture('verify_credentials.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do

@@ -7,10 +7,10 @@ describe Instapaper::Client::User do
 
   describe '.access_token' do
     before do
-      stub_post('oauth/access_token').with(body: { x_auth_username: 'ohai', x_auth_password: 'p455w0rd', x_auth_mode: 'client_auth' })
-        .to_return(body: fixture('access_token.qline'), headers: { content_type: 'text/plain; charset=utf-8' })
-      stub_post('oauth/access_token').with(body: { x_auth_username: 'inval1d', x_auth_password: 'cr3dentials', x_auth_mode: 'client_auth' })
-        .to_return(body: fixture('invalid_credentials.qline'), headers: { content_type: 'text/plain; charset=utf-8' })
+      stub_post('oauth/access_token').with(body: {x_auth_username: 'ohai', x_auth_password: 'p455w0rd', x_auth_mode: 'client_auth'})
+        .to_return(body: fixture('access_token.qline'), headers: {content_type: 'text/plain; charset=utf-8'})
+      stub_post('oauth/access_token').with(body: {x_auth_username: 'inval1d', x_auth_password: 'cr3dentials', x_auth_mode: 'client_auth'})
+        .to_return(body: fixture('invalid_credentials.qline'), headers: {content_type: 'text/plain; charset=utf-8'})
     end
 
     it 'should get the correct resource' do

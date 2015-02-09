@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Instapaper::Client do
   before do
-    @options = { adapter: :em_synchrony, user_agent: 'Instapaper::Client spec' }
+    @options = {adapter: :em_synchrony, user_agent: 'Instapaper::Client spec'}
     @keys = Instapaper::Configuration::VALID_OPTIONS_KEYS
   end
 
