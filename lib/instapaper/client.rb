@@ -6,7 +6,17 @@ module Instapaper
   # Wrapper for the Instapaper REST API
   class Client
     # @private
-    attr_accessor *Configuration::VALID_OPTIONS_KEYS
+    attr_accessor :adapter
+    attr_accessor :consumer_key
+    attr_accessor :consumer_secret
+    attr_accessor :endpoint
+    attr_accessor :oauth_token
+    attr_accessor :oauth_token_secret
+    attr_accessor :proxy
+    attr_accessor :version
+    attr_accessor :path_prefix
+    attr_accessor :user_agent
+    attr_accessor :connection_options
 
     alias_method :api_endpoint, :endpoint
     alias_method :api_version, :version

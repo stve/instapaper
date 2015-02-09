@@ -6,13 +6,8 @@ module Instapaper
   module Connection
     private
 
-    def connection(raw = false)
-      merged_options = connection_options.merge(headers: {
-                                                  'Accept' => 'application/json',
-                                                  'User-Agent' => user_agent
-                                                },
-                                                proxy: proxy,
-                                                url: api_endpoint)
+    def connection(raw = false) # rubocop:disable AbcSize, CyclomaticComplexity, MethodLength, PerceivedComplexity
+      merged_options = connection_defaults.merge(connection_options)
 
       Faraday.new(merged_options) do |builder|
         if authenticated?
@@ -27,6 +22,17 @@ module Instapaper
         builder.use Faraday::Response::RaiseHttp1xxx
         builder.adapter(adapter)
       end
+    end
+
+    def connection_defaults
+      {
+        headers: {
+          'Accept' => 'application/json',
+          'User-Agent' => user_agent,
+        },
+        proxy: proxy,
+        url: api_endpoint,
+      }
     end
   end
 end

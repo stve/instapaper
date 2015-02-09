@@ -49,8 +49,17 @@ module Instapaper
 
     DEFAULT_CONNECTION_OPTIONS = {}
 
-    # @private
-    attr_accessor *VALID_OPTIONS_KEYS
+    attr_accessor :adapter
+    attr_accessor :consumer_key
+    attr_accessor :consumer_secret
+    attr_accessor :endpoint
+    attr_accessor :oauth_token
+    attr_accessor :oauth_token_secret
+    attr_accessor :proxy
+    attr_accessor :version
+    attr_accessor :path_prefix
+    attr_accessor :user_agent
+    attr_accessor :connection_options
 
     # When this module is extended, set all configuration options to their default values
     def self.extended(base)
@@ -70,7 +79,7 @@ module Instapaper
     end
 
     # Reset all configuration options to defaults
-    def reset
+    def reset # rubocop:disable MethodLength
       self.adapter            = DEFAULT_ADAPTER
       self.consumer_key       = DEFAULT_CONSUMER_KEY
       self.consumer_secret    = DEFAULT_CONSUMER_SECRET

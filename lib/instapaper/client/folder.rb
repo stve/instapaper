@@ -24,7 +24,7 @@ module Instapaper
       # @param order [Array] An array of folder_id:position pairs joined by commas.
       # @example Ordering folder_ids 100, 200, and 300
       #   Instapaper.set_order(['100:1','200:2','300:3'])
-      def set_order(order = [])
+      def set_order(order = []) # rubocop:disable Style/AccessorMethodName
         post('folders/set_order', order: order.join(','))
       end
     end

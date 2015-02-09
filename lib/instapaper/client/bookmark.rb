@@ -12,7 +12,7 @@ module Instapaper
 
       # Updates the user's reading progress on a single article.
       # @param bookmark_id [String] The id of the bookmark to update.
-      # @param progress [Float] The user’s progress, as a floating-point number between 0.0 and 1.0, defined as the top edge of the user’s current viewport, expressed as a percentage of the article’s total length.
+      # @param progress [Float] The user's progress, as a floating-point number between 0.0 and 1.0, defined as the top edge of the user's current viewport, expressed as a percentage of the article's total length.
       # @param progress_timestamp [Integer] The Unix timestamp value of the time that the progress was recorded.
       def update_read_progress(bookmark_id, progress, progress_timestamp = Time.now)
         post('bookmarks/update_read_progress', bookmark_id: bookmark_id, progress: progress, progress_timestamp: progress_timestamp.to_i).first

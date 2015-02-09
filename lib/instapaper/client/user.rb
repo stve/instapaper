@@ -7,9 +7,7 @@ module Instapaper
         response = post('oauth/access_token', {x_auth_username: username, x_auth_password: password, x_auth_mode: 'client_auth'}, true)
         params = response.body.split('&')
         values = params.map { |part| part.split('=') }.flatten
-        if values.length == 1
-          values.unshift('error')
-        end
+        values.unshift('error') if values.length == 1
         Hash[*values]
       end
     end
