@@ -7,7 +7,7 @@ module Instapaper
   # Alias for Instapaper::Client.new
   #
   # @return [Instapaper::Client]
-  def self.client(options={})
+  def self.client(options = {})
     Instapaper::Client.new(options)
   end
 

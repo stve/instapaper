@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe Instapaper::Client do
-
   before do
-    @options = { :adapter => :em_synchrony, :user_agent => 'Instapaper::Client spec' }
+    @options = { adapter: :em_synchrony, user_agent: 'Instapaper::Client spec' }
     @keys = Instapaper::Configuration::VALID_OPTIONS_KEYS
   end
 
@@ -19,7 +18,7 @@ describe Instapaper::Client do
     end
 
     context 'with module configuration' do
-      it "should inherit module configuration" do
+      it 'should inherit module configuration' do
         api = Instapaper::Client.new
         @keys.each do |key|
           expect(api.send(key)).to eq(key)
@@ -28,24 +27,24 @@ describe Instapaper::Client do
     end
 
     context 'with class configuration' do
-      context "during initialization" do
-        it "should override module configuration" do
+      context 'during initialization' do
+        it 'should override module configuration' do
           api = Instapaper::Client.new(@options)
           @keys.each do |key|
-            h = @options.has_key?(key) ? @options : Instapaper.options
+            h = @options.key?(key) ? @options : Instapaper.options
             expect(api.send(key)).to eq(h[key])
           end
         end
       end
 
-      context "after initialization" do
-        it "should override module configuration after initialization" do
+      context 'after initialization' do
+        it 'should override module configuration after initialization' do
           api = Instapaper::Client.new
           @options.each do |key, value|
             api.send("#{key}=", value)
           end
           @keys.each do |key|
-            h = @options.has_key?(key) ? @options : Instapaper.options
+            h = @options.key?(key) ? @options : Instapaper.options
             expect(api.send(key)).to eq(h[key])
           end
         end

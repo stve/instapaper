@@ -8,11 +8,11 @@ module Instapaper
     # @private
     attr_accessor *Configuration::VALID_OPTIONS_KEYS
 
-    alias :api_endpoint :endpoint
-    alias :api_version :version
+    alias_method :api_endpoint, :endpoint
+    alias_method :api_version, :version
 
     # Creates a new API
-    def initialize(options={})
+    def initialize(options = {})
       options = Instapaper.options.merge(options)
       Configuration::VALID_OPTIONS_KEYS.each do |key|
         send("#{key}=", options[key])
