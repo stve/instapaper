@@ -13,9 +13,9 @@ describe Faraday::Response do
       end
 
       it "should raise Instapaper::Error error" do
-        lambda do
+        expect do
           @client.folders
-        end.should raise_error(Instapaper::Error)
+        end.to raise_error(Instapaper::Error)
       end
     end
   end

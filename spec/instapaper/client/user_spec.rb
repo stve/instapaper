@@ -15,21 +15,21 @@ describe Instapaper::Client::User do
 
     it "should get the correct resource" do
       @client.access_token('ohai', 'p455w0rd')
-      a_post("oauth/access_token").
-        should have_been_made
+      expect(a_post("oauth/access_token")).
+        to have_been_made
     end
 
     it "should return the a hash containing an oauth token and secret" do
       tokens = @client.access_token('ohai', 'p455w0rd')
-      tokens.should be_a Hash
-      tokens.key?('oauth_token').should be true
-      tokens.key?('oauth_token_secret').should be true
+      expect(tokens).to be_a Hash
+      expect(tokens.key?('oauth_token')).to be true
+      expect(tokens.key?('oauth_token_secret')).to be true
     end
 
     it "should return a hash containing the error on invalid credentials" do
       tokens = @client.access_token('inval1d', 'cr3dentials')
-      tokens.should be_a Hash
-      tokens.key?('error').should be true
+      expect(tokens).to be_a Hash
+      expect(tokens.key?('error')).to be true
     end
   end
 

@@ -9,7 +9,7 @@ end
 
 group :test do
   gem 'json', :platforms => :ruby_18
-  gem 'rspec', '~> 2.99'
+  gem 'rspec', '~> 3.2'
   gem 'timecop'
   gem 'webmock', '>= 1.10.1'
 end

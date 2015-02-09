@@ -22,7 +22,7 @@ describe Instapaper::Client do
       it "should inherit module configuration" do
         api = Instapaper::Client.new
         @keys.each do |key|
-          api.send(key).should eq(key)
+          expect(api.send(key)).to eq(key)
         end
       end
     end
@@ -33,7 +33,7 @@ describe Instapaper::Client do
           api = Instapaper::Client.new(@options)
           @keys.each do |key|
             h = @options.has_key?(key) ? @options : Instapaper.options
-            api.send(key).should eq(h[key])
+            expect(api.send(key)).to eq(h[key])
           end
         end
       end
@@ -46,7 +46,7 @@ describe Instapaper::Client do
           end
           @keys.each do |key|
             h = @options.has_key?(key) ? @options : Instapaper.options
-            api.send(key).should eq(h[key])
+            expect(api.send(key)).to eq(h[key])
           end
         end
       end
@@ -59,7 +59,7 @@ describe Instapaper::Client do
     end
 
     it 'should return the ' do
-      @client.endpoint_with_prefix.should == Instapaper.endpoint + Instapaper.path_prefix
+      expect(@client.endpoint_with_prefix).to eq(Instapaper.endpoint + Instapaper.path_prefix)
     end
   end
 end

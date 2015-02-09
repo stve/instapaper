@@ -13,16 +13,16 @@ describe Instapaper::Client::Folder do
 
     it "should get the correct resource" do
       @client.folders
-      a_post("folders/list").
-        should have_been_made
+      expect(a_post("folders/list")).
+        to have_been_made
     end
 
     it "should return an array containing folders on success" do
       folders = @client.folders
-      folders.should be_an Array
-      folders.size.should == 2
-      folders.first.should be_a Hashie::Rash
-      folders.first['title'].should == 'Ruby'
+      expect(folders).to be_an Array
+      expect(folders.size).to eq(2)
+      expect(folders.first).to be_a Hashie::Rash
+      expect(folders.first['title']).to eq('Ruby')
     end
   end
 
@@ -34,16 +34,16 @@ describe Instapaper::Client::Folder do
 
     it "should get the correct resource" do
       @client.add_folder("Ruby")
-      a_post("folders/add").
-        should have_been_made
+      expect(a_post("folders/add")).
+        to have_been_made
     end
 
     it "should return an array containing the new folder on success" do
       folders = @client.add_folder("Ruby")
-      folders.should be_an Array
-      folders.should_not be_empty
-      folders.first.should be_a Hashie::Rash
-      folders.first['title'].should == 'Ruby'
+      expect(folders).to be_an Array
+      expect(folders).not_to be_empty
+      expect(folders.first).to be_a Hashie::Rash
+      expect(folders.first['title']).to eq('Ruby')
     end
   end
 
@@ -55,14 +55,14 @@ describe Instapaper::Client::Folder do
 
     it "should get the correct resource" do
       @client.delete_folder("1")
-      a_post("folders/delete").
-        should have_been_made
+      expect(a_post("folders/delete")).
+        to have_been_made
     end
 
     it "should return an empty array on success" do
       confirm = @client.delete_folder("1")
-      confirm.should be_an Array
-      confirm.should be_empty
+      expect(confirm).to be_an Array
+      expect(confirm).to be_empty
     end
   end
 
@@ -74,15 +74,15 @@ describe Instapaper::Client::Folder do
 
     it "should get the correct resource" do
       @client.set_order(['1121173:2','1121174:1'])
-      a_post("folders/set_order").
-        should have_been_made
+      expect(a_post("folders/set_order")).
+        to have_been_made
     end
 
     it "should return an array reflecting the new order on success" do
       folders = @client.set_order(['1121173:2','1121174:1'])
-      folders.should be_an Array
-      folders.first.should be_a Hashie::Rash
-      folders.first['position'].should == 1
+      expect(folders).to be_an Array
+      expect(folders.first).to be_a Hashie::Rash
+      expect(folders.first['position']).to eq(1)
     end
   end
 

@@ -13,14 +13,14 @@ describe Instapaper::Client::Account do
 
     it "should get the correct resource" do
       @client.verify_credentials
-      a_post("account/verify_credentials").
-        should have_been_made
+      expect(a_post("account/verify_credentials")).
+        to have_been_made
     end
 
     it "should return the user" do
       user = @client.verify_credentials.first
-      user.should be_a Hashie::Rash
-      user.username.should == 'TestUserOMGLOL'
+      expect(user).to be_a Hashie::Rash
+      expect(user.username).to eq('TestUserOMGLOL')
     end
   end
 
