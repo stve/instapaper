@@ -1,26 +1,22 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path('../lib/instapaper/version', __FILE__)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'instapaper/version'
 
-Gem::Specification.new do |gem|
-  gem.name        = "instapaper"
-  gem.version     = Instapaper::VERSION
-
-  gem.author      = "Steve Agalloco"
-  gem.email       = "steve.agalloco@gmail.com"
-  gem.homepage    = "https://github.com/spagalloco/instapaper"
-  gem.summary     = %q{Ruby Instapaper Client}
-  gem.description = %q{Ruby Client for Instapaper's Full API}
-
-  gem.add_development_dependency 'kramdown'
-  gem.add_development_dependency 'simplecov'
-
-  gem.add_runtime_dependency 'faraday_middleware', '~> 0.7'
-  gem.add_runtime_dependency 'multi_json', '~> 1'
-  gem.add_runtime_dependency 'rash'
-  gem.add_runtime_dependency 'simple_oauth'
-
-  gem.files         = `git ls-files`.split("\n")
-  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  gem.require_paths = ["lib"]
+Gem::Specification.new do |spec|
+  spec.add_dependency 'faraday_middleware', '~> 0.7'
+  spec.add_dependency 'multi_json', '~> 1'
+  spec.add_dependency 'rash'
+  spec.add_dependency 'simple_oauth'
+  spec.add_development_dependency 'bundler', '~> 1.0'
+  spec.author        = 'Steve Agalloco'
+  spec.description   = "Ruby Client for Instapaper's Full API"
+  spec.email         = 'steve.agalloco@gmail.com'
+  spec.files         = `git ls-files`.split("\n")
+  spec.homepage      = 'https://github.com/stve/instapaper'
+  spec.licenses      = %w(MIT)
+  spec.name          = 'instapaper'
+  spec.require_paths = %w(lib)
+  spec.required_ruby_version = '>= 2.0.0'
+  spec.summary       = 'Ruby Instapaper Client'
+  spec.version       = Instapaper::VERSION
 end
