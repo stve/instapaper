@@ -126,14 +126,14 @@ Instapaper.folders
 ```
 
 ## <a name="build"></a>Build Status
-[![Build Status](https://secure.travis-ci.org/spagalloco/instapaper.png?branch=master)][travis]
+[![Build Status](https://secure.travis-ci.org/stve/instapaper.png?branch=master)][travis]
 
-[travis]: http://travis-ci.org/spagalloco/instapaper
+[travis]: http://travis-ci.org/stve/instapaper
 
 ## <a name="dependencies"></a>Dependency Status
-[![Dependency Status](https://gemnasium.com/spagalloco/instapaper.png?travis)][gemnasium]
+[![Dependency Status](https://gemnasium.com/stve/instapaper.png?travis)][gemnasium]
 
-[gemnasium]: https://gemnasium.com/spagalloco/instapaper
+[gemnasium]: https://gemnasium.com/stve/instapaper
 
 
 ## Documentation
@@ -152,4 +152,4 @@ Instapaper.folders
 
 ## Copyright
 
-Copyright (c) 2015 Steve Agalloco. See [LICENSE](https://github.com/spagalloco/instapaper/blob/master/LICENSE.md) for details.
+Copyright (c) 2015 Steve Agalloco. See [LICENSE](https://github.com/stve/instapaper/blob/master/LICENSE.md) for details.
