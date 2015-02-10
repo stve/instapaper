@@ -2,6 +2,7 @@ require 'instapaper/api'
 require 'instapaper/error'
 require 'instapaper/version'
 require 'faraday_middleware'
+require 'faraday/response/parse_json'
 require 'faraday/response/raise_http_1xxx'
 
 module Instapaper
@@ -81,8 +82,8 @@ module Instapaper
         end
         builder.use Faraday::Request::Multipart
         builder.use Faraday::Request::UrlEncoded
-        builder.use Faraday::Response::Rashify unless raw
-        builder.use Faraday::Response::ParseJson unless raw
+        # builder.use Faraday::Response::Rashify unless raw
+        builder.use Instapaper::API::Response::ParseJson unless raw
         builder.use Faraday::Response::RaiseHttp1xxx
         builder.adapter(adapter)
       end
@@ -112,6 +113,7 @@ module Instapaper
       end
       raw ? response : response.body
     end
+    alias_method :perform_request, :request
 
     # Authentication hash
     #

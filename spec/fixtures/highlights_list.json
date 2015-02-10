@@ -1,0 +1,18 @@
+[
+  {
+    "type":"highlight",
+    "highlight_id":42,
+    "bookmark_id":123,
+    "text":"example page",
+    "position":0,
+    "time":1394470555
+  },
+  {
+    "type":"highlight",
+    "highlight_id":43,
+    "bookmark_id":123,
+    "text":"example page 2",
+    "position":1,
+    "time":1394470555
+  }
+]
