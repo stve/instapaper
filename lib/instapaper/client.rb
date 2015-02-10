@@ -60,8 +60,7 @@ module Instapaper
     attr_accessor :user_agent
     attr_accessor :connection_options
 
-
-    # Creates a new API
+    # Creates a new Instapaper::Client
     def initialize(options = {})
       reset
       options.keys.each do |key|

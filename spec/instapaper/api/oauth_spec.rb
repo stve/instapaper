@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Instapaper::Client::User do
+describe Instapaper::Client::OAuth do
   let(:client) { Instapaper::Client.new }
 
   describe '.access_token' do
