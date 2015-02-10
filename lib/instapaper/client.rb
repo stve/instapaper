@@ -82,7 +82,6 @@ module Instapaper
         end
         builder.use Faraday::Request::Multipart
         builder.use Faraday::Request::UrlEncoded
-        # builder.use Faraday::Response::Rashify unless raw
         builder.use Instapaper::API::Response::ParseJson unless raw
         builder.use Faraday::Response::RaiseHttp1xxx
         builder.adapter(adapter)
