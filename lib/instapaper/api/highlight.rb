@@ -4,7 +4,6 @@ module Instapaper
   module API
     # Defines methods related to highlights
     module Highlight
-
       # List highlights for a bookmark
       def highlights(bookmark_id)
         perform_post_with_objects("/api/1.1/bookmarks/#{bookmark_id}/highlights", {}, Instapaper::Highlight)

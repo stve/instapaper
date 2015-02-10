@@ -12,7 +12,7 @@ module Instapaper
           when WHITESPACE_REGEX, nil
             nil
           else
-            JSON.parse(body, :symbolize_names => true)
+            JSON.parse(body, symbolize_names: true)
           end
         end
 
@@ -28,4 +28,4 @@ module Instapaper
   end
 end
 
-Faraday::Response.register_middleware :instapaper_parse_json => Instapaper::API::Response::ParseJson
+Faraday::Response.register_middleware instapaper_parse_json: Instapaper::API::Response::ParseJson
