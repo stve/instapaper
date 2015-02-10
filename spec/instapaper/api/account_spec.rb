@@ -16,9 +16,8 @@ describe Instapaper::Client::Account do
     end
 
     it 'should return the user' do
-      user = client.verify_credentials.first
-      expect(user).to be_a Hashie::Rash
-      expect(user.username).to eq('TestUserOMGLOL')
+      user = client.verify_credentials
+      expect(user).to be_a Instapaper::User
     end
   end
 end
