@@ -1,3 +1,5 @@
+require 'instapaper/object'
+
 module Instapaper
   module API
     module Utils

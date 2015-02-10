@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Instapaper::Client::Bookmark do
   let(:client) { Instapaper::Client.new(consumer_key: 'CK', consumer_secret: 'CS', oauth_token: 'OT', oauth_token_secret: 'OS') }
 
-  describe '.bookmarks' do
+  describe '#bookmarks' do
     before do
       stub_post('/api/1/bookmarks/list')
         .to_return(body: fixture('bookmarks_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
@@ -24,13 +24,12 @@ describe Instapaper::Client::Bookmark do
     it 'should remove the meta and current user objects from the array' do
       bookmarks = client.bookmarks
       bookmarks.each do |bookmark|
-        expect(bookmark).to be_a Hashie::Rash
-        expect(bookmark.type).to eq('bookmark')
+        expect(bookmark).to be_an Instapaper::Bookmark
       end
     end
   end
 
-  describe '.update_read_progress' do
+  describe '#update_read_progress' do
     before do
       @time = Time.now
       stub_post('/api/1/bookmarks/update_read_progress')
@@ -45,13 +44,12 @@ describe Instapaper::Client::Bookmark do
 
     it 'should return an array containing bookmarks on success' do
       bookmark = client.update_read_progress(123, 0.5, @time)
-      expect(bookmark).to be_a Hashie::Rash
-      expect(bookmark.type).to eq('bookmark')
+      expect(bookmark).to be_an Instapaper::Bookmark
       expect(bookmark.progress).to eq('0.5')
     end
   end
 
-  describe '.add_bookmark' do
+  describe '#add_bookmark' do
     before do
       stub_post('/api/1/bookmarks/add')
         .to_return(body: fixture('bookmarks_add.json'), headers: {content_type: 'application/json; charset=utf-8'})
@@ -65,12 +63,11 @@ describe Instapaper::Client::Bookmark do
 
     it 'should return the bookmark on success' do
       bookmark = client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
-      expect(bookmark).to be_a Hashie::Rash
-      expect(bookmark.type).to eq('bookmark')
+      expect(bookmark).to be_an Instapaper::Bookmark
     end
   end
 
-  describe '.delete_bookmark' do
+  describe '#delete_bookmark' do
     before do
       stub_post('/api/1/bookmarks/delete')
         .to_return(body: '[]', headers: {content_type: 'application/json; charset=utf-8'})
@@ -89,120 +86,95 @@ describe Instapaper::Client::Bookmark do
     end
   end
 
-  describe '.star' do
+  describe '#star_bookmark' do
     before do
       stub_post('/api/1/bookmarks/star')
         .to_return(body: fixture('bookmarks_star.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
-      client.star(123)
+      client.star_bookmark(123)
       expect(a_post('/api/1/bookmarks/star').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
     it 'should return a starred bookmark on success' do
-      bookmark = client.star(123)
-      expect(bookmark).to be_a Hashie::Rash
-      expect(bookmark.type).to eq('bookmark')
+      bookmark = client.star_bookmark(123)
+      expect(bookmark).to be_an Instapaper::Bookmark
       expect(bookmark.starred).to eq('1')
-    end
-
-    it 'should be aliased as .star_bookmark' do
-      expect(client.star(123)).to eq(client.star_bookmark(123))
     end
   end
 
-  describe '.unstar' do
+  describe '#unstar_bookmark' do
     before do
       stub_post('/api/1/bookmarks/unstar')
         .to_return(body: fixture('bookmarks_unstar.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
-      client.unstar(123)
+      client.unstar_bookmark(123)
       expect(a_post('/api/1/bookmarks/unstar').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
     it 'should return an unstarred bookmark on success' do
-      bookmark = client.unstar(123)
-      expect(bookmark).to be_a Hashie::Rash
-      expect(bookmark.type).to eq('bookmark')
+      bookmark = client.unstar_bookmark(123)
+      expect(bookmark).to be_an Instapaper::Bookmark
       expect(bookmark.starred).to eq('0')
-    end
-
-    it 'should be aliased as .unstar_bookmark' do
-      expect(client.unstar(123)).to eq(client.unstar_bookmark(123))
     end
   end
 
-  describe '.archive' do
+  describe '#archive_bookmark' do
     before do
       stub_post('/api/1/bookmarks/archive')
         .to_return(body: fixture('bookmarks_archive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
-      client.archive(123)
+      client.archive_bookmark(123)
       expect(a_post('/api/1/bookmarks/archive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
     it 'should return the bookmark on success' do
-      bookmark = client.archive(123)
-      expect(bookmark).to be_a Hashie::Rash
-      expect(bookmark.type).to eq('bookmark')
-    end
-
-    it 'should be aliased as .archive_bookmark' do
-      expect(client.archive(123)).to eq(client.archive_bookmark(123))
+      bookmark = client.archive_bookmark(123)
+      expect(bookmark).to be_an Instapaper::Bookmark
     end
   end
 
-  describe '.unarchive' do
+  describe '#unarchive_bookmark' do
     before do
       stub_post('/api/1/bookmarks/unarchive')
         .to_return(body: fixture('bookmarks_unarchive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
-      client.unarchive(123)
+      client.unarchive_bookmark(123)
       expect(a_post('/api/1/bookmarks/unarchive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
     it 'should return the bookmark on success' do
-      bookmark = client.unarchive(123)
-      expect(bookmark).to be_a Hashie::Rash
-      expect(bookmark.type).to eq('bookmark')
-    end
-
-    it 'should be aliased as .unarchive_bookmark' do
-      expect(client.unarchive(123)).to eq(client.unarchive_bookmark(123))
+      bookmark = client.unarchive_bookmark(123)
+      expect(bookmark).to be_an Instapaper::Bookmark
     end
   end
 
-  describe '.move' do
+  describe '#move_bookmark' do
     before do
       stub_post('/api/1/bookmarks/move')
         .to_return(body: fixture('bookmarks_move.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
-      client.move(123, 12_345)
+      client.move_bookmark(123, 12_345)
       expect(a_post('/api/1/bookmarks/move').with(body: {bookmark_id: '123', folder_id: '12345'}))
         .to have_been_made
     end
 
     it 'should return the bookmark on success' do
-      bookmark = client.move(123, 12_345)
-      expect(bookmark).to be_a Hashie::Rash
-      expect(bookmark.type).to eq('bookmark')
-    end
-
-    it 'should be aliased as .move_bookmark' do
-      expect(client.move(123, 12_345)).to eq(client.move_bookmark(123, 12_345))
+      bookmark = client.move_bookmark(123, 12_345)
+      expect(bookmark).to be_an Instapaper::Bookmark
     end
   end
 
