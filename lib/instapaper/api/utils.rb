@@ -33,6 +33,7 @@ module Instapaper
       # @param klass [Class]
       def perform_request_with_object(request_method, path, options, klass)
         response = perform_request(request_method, path, options)
+        response = response.is_a?(Array) ? response.first : response
         klass.with(response)
       end
 
