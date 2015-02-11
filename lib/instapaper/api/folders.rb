@@ -3,7 +3,7 @@ require 'instapaper/folder'
 module Instapaper
   module API
     # Defines methods related to folders
-    module Folder
+    module Folders
       # List the account's user-created folders.
       # @note This only includes organizational folders and does not include RSS-feed folders or starred-subscription folders
       def folders

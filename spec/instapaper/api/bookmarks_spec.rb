@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Instapaper::Client::Bookmark do
+describe Instapaper::Client::Bookmarks do
   let(:client) { Instapaper::Client.new(consumer_key: 'CK', consumer_secret: 'CS', oauth_token: 'OT', oauth_token_secret: 'OS') }
 
   describe '#bookmarks' do

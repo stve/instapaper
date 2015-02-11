@@ -3,7 +3,7 @@ require 'instapaper/bookmark'
 module Instapaper
   module API
     # Defines methods related to bookmarks
-    module Bookmark
+    module Bookmarks
       # Lists the user's unread bookmarks, and can also synchronize reading positions.
       # @option limit: Optional. A number between 1 and 500, default 25.
       # @option folder_id: Optional. Possible values are unread (default), starred, archive, or a folder_id value from /api/1/folders/list.

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Instapaper::Client::Account do
+describe Instapaper::Client::Accounts do
   let(:client) { Instapaper::Client.new }
 
   describe '.verify_credentials' do

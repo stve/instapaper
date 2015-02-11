@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Instapaper::Client::Folder do
+describe Instapaper::Client::Folders do
   let(:client) { Instapaper::Client.new(consumer_key: 'CK', consumer_secret: 'CS', oauth_token: 'OT', oauth_token_secret: 'OS') }
 
   describe '#folders' do

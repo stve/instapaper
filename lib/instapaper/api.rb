@@ -1,16 +1,16 @@
-require 'instapaper/api/account'
-require 'instapaper/api/bookmark'
-require 'instapaper/api/folder'
-require 'instapaper/api/highlight'
+require 'instapaper/api/accounts'
+require 'instapaper/api/bookmarks'
+require 'instapaper/api/folders'
+require 'instapaper/api/highlights'
 require 'instapaper/api/oauth'
 require 'instapaper/api/utils'
 
 module Instapaper
   module API
-    include Instapaper::API::Account
-    include Instapaper::API::Bookmark
-    include Instapaper::API::Folder
-    include Instapaper::API::Highlight
+    include Instapaper::API::Accounts
+    include Instapaper::API::Bookmarks
+    include Instapaper::API::Folders
+    include Instapaper::API::Highlights
     include Instapaper::API::OAuth
     include Instapaper::API::Utils
   end
