@@ -70,7 +70,6 @@ module Instapaper
       def get_text(bookmark_id)
         perform_post_with_unparsed_response('/api/1/bookmarks/get_text', bookmark_id: bookmark_id)
       end
-      alias_method :text, :get_text
     end
   end
 end

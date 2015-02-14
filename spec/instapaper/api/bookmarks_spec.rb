@@ -178,26 +178,22 @@ describe Instapaper::Client::Bookmarks do
     end
   end
 
-  describe '.text' do
+  describe '#get_text' do
     before do
       stub_post('/api/1/bookmarks/get_text')
         .to_return(body: fixture('bookmarks_get_text.txt'), headers: {content_type: 'text/html; charset=utf-8'})
     end
 
     it 'should get the correct resource' do
-      client.text(123)
+      client.get_text(123)
       expect(a_post('/api/1/bookmarks/get_text').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
     it "should return the bookmark's html on success" do
-      bookmark = client.text(123)
+      bookmark = client.get_text(123)
       expect(bookmark.length).to be > 0
       expect(bookmark).to include("Ideo's Axioms for Starting Disruptive New Businesses")
-    end
-
-    it 'should be aliased as .get_text' do
-      expect(client.text(123)).to eq(client.get_text(123))
     end
   end
 end
