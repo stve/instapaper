@@ -17,7 +17,7 @@ module Instapaper
       :oauth_token_secret,
       :proxy,
       :user_agent,
-      :connection_options].freeze
+    ].freeze
 
     # By default, don't set an application key
     DEFAULT_CONSUMER_KEY = nil
@@ -40,8 +40,6 @@ module Instapaper
     # The user agent that will be sent to the API endpoint if none is set
     DEFAULT_USER_AGENT = "Instapaper Ruby Gem #{Instapaper::VERSION}".freeze
 
-    DEFAULT_CONNECTION_OPTIONS = {}
-
     # @private
     attr_accessor :consumer_key
     attr_accessor :consumer_secret
@@ -50,7 +48,6 @@ module Instapaper
     attr_accessor :oauth_token_secret
     attr_accessor :proxy
     attr_accessor :user_agent
-    attr_accessor :connection_options
 
     # Creates a new Instapaper::Client
     def initialize(options = {})
@@ -97,7 +94,6 @@ module Instapaper
       @oauth_token_secret = DEFAULT_OAUTH_TOKEN_SECRET
       @proxy              = DEFAULT_PROXY
       @user_agent         = DEFAULT_USER_AGENT
-      @connection_options = DEFAULT_CONNECTION_OPTIONS
     end
   end
 end
