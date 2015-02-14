@@ -12,35 +12,35 @@ require 'rspec'
 require 'webmock/rspec'
 
 def a_delete(path)
-  a_request(:delete, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  a_request(:delete, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def a_get(path)
-  a_request(:get, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  a_request(:get, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def a_post(path)
-  a_request(:post, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  a_request(:post, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def a_put(path)
-  a_request(:put, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  a_request(:put, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def stub_delete(path)
-  stub_request(:delete, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  stub_request(:delete, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def stub_get(path)
-  stub_request(:get, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  stub_request(:get, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def stub_post(path)
-  stub_request(:post, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  stub_request(:post, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def stub_put(path)
-  stub_request(:put, Instapaper::Client::DEFAULT_ENDPOINT + path)
+  stub_request(:put, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def fixture_path

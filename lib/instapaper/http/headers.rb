@@ -32,11 +32,10 @@ module Instapaper
         {
           consumer_key: @client.consumer_key,
           consumer_secret: @client.consumer_secret,
-          token: @client.oauth_token,
-          token_secret: @client.oauth_token_secret,
+          token: @client.access_token,
+          token_secret: @client.access_token_secret,
         }
       end
-
     end
   end
 end

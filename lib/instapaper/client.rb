@@ -8,53 +8,23 @@ module Instapaper
     include Instapaper::API
     include Instapaper::HTTP::Utils
 
-    # An array of valid keys in the options hash when configuring a {Instapaper::API}
-    VALID_OPTIONS_KEYS = [
-      :consumer_key,
-      :consumer_secret,
-      :endpoint,
-      :oauth_token,
-      :oauth_token_secret,
-      :proxy,
-      :user_agent,
-    ].freeze
+    attr_accessor :access_token, :access_token_secret, :consumer_key, :consumer_secret, :proxy
+    attr_writer :user_agent
 
-    # By default, don't set an application key
-    DEFAULT_CONSUMER_KEY = nil
-
-    # By default, don't set an application secret
-    DEFAULT_CONSUMER_SECRET = nil
-
-    # The endpoint that will be used to connect if none is set
-    DEFAULT_ENDPOINT = 'https://www.instapaper.com'.freeze
-
-    # By default, don't set a user oauth token
-    DEFAULT_OAUTH_TOKEN = nil
-
-    # By default, don't set a user oauth secret
-    DEFAULT_OAUTH_TOKEN_SECRET = nil
-
-    # By default, don't use a proxy server
-    DEFAULT_PROXY = nil
-
-    # The user agent that will be sent to the API endpoint if none is set
-    DEFAULT_USER_AGENT = "Instapaper Ruby Gem #{Instapaper::VERSION}".freeze
-
-    # @private
-    attr_accessor :consumer_key
-    attr_accessor :consumer_secret
-    attr_accessor :endpoint
-    attr_accessor :oauth_token
-    attr_accessor :oauth_token_secret
-    attr_accessor :proxy
-    attr_accessor :user_agent
-
-    # Creates a new Instapaper::Client
+    # Initializes a new Client object
+    #
+    # @param options [Hash]
+    # @return [Instapaper::Client]
     def initialize(options = {})
-      reset
-      options.keys.each do |key|
-        send("#{key}=", options[key])
-      end
+     options.each do |key, value|
+       instance_variable_set("@#{key}", value)
+     end
+     yield(self) if block_given?
+    end
+
+    # @return [String]
+    def user_agent
+      @user_agent ||= "InstapaperRubyGem/#{Instapaper::VERSION}"
     end
 
     # Authentication hash
@@ -64,8 +34,8 @@ module Instapaper
       {
         consumer_key: @consumer_key,
         consumer_secret: @consumer_secret,
-        oauth_token: @oauth_token,
-        oauth_token_secret: @oauth_token_secret,
+        access_token: @access_token,
+        access_token_secret: @access_token_secret,
       }
     end
 
@@ -76,24 +46,9 @@ module Instapaper
       }
     end
 
-    # Check whether user is authenticated
-    #
     # @return [Boolean]
-    def authenticated?
-      authentication.values.all?
-    end
-
-    private
-
-    # Reset all configuration options to defaults
-    def reset # rubocop:disable MethodLength
-      @consumer_key       = DEFAULT_CONSUMER_KEY
-      @consumer_secret    = DEFAULT_CONSUMER_SECRET
-      @endpoint           = DEFAULT_ENDPOINT
-      @oauth_token        = DEFAULT_OAUTH_TOKEN
-      @oauth_token_secret = DEFAULT_OAUTH_TOKEN_SECRET
-      @proxy              = DEFAULT_PROXY
-      @user_agent         = DEFAULT_USER_AGENT
+    def credentials?
+      credentials.values.all?
     end
   end
 end
