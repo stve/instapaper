@@ -12,7 +12,6 @@ end
 
 group :test do
   gem 'rspec', '~> 3.2'
-  gem 'timecop'
   gem 'webmock', '>= 1.10.1'
   gem 'rubocop', '>= 0.27'
   gem 'simplecov', '>= 0.9'
