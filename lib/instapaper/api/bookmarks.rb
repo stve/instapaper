@@ -67,10 +67,10 @@ module Instapaper
       # Returns the specified bookmark's processed text-view HTML, which is
       # always text/html encoded as UTF-8.
       # @param bookmark_id [String] The id of the bookmark.
-      def text(bookmark_id)
-        post('/api/1/bookmarks/get_text', {bookmark_id: bookmark_id}, true).body
+      def get_text(bookmark_id)
+        perform_post_with_unparsed_response('/api/1/bookmarks/get_text', {bookmark_id: bookmark_id})
       end
-      alias_method :get_text, :text
+      alias_method :text, :get_text
     end
   end
 end

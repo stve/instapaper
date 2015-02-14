@@ -24,7 +24,7 @@ module Instapaper
       # @param highlight_id [String, Integer]
       # @return [Boolean]
       def delete_highlight(highlight_id, options = {})
-        perform_post_with_empty_response("/api/1.1/highlights/#{highlight_id}/delete", options)
+        perform_post_with_unparsed_response("/api/1.1/highlights/#{highlight_id}/delete", options)
         true
       end
     end

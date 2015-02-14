@@ -3,7 +3,6 @@ require 'instapaper/api/bookmarks'
 require 'instapaper/api/folders'
 require 'instapaper/api/highlights'
 require 'instapaper/api/oauth'
-require 'instapaper/api/utils'
 
 module Instapaper
   module API
@@ -12,6 +11,5 @@ module Instapaper
     include Instapaper::API::Folders
     include Instapaper::API::Highlights
     include Instapaper::API::OAuth
-    include Instapaper::API::Utils
   end
 end

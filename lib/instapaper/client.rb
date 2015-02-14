@@ -1,18 +1,15 @@
 require 'instapaper/api'
-require 'instapaper/error'
+require 'instapaper/http/utils'
 require 'instapaper/version'
-require 'faraday_middleware'
-require 'faraday/response/parse_json'
-require 'faraday/response/raise_http_1xxx'
 
 module Instapaper
   # Wrapper for the Instapaper REST API
   class Client
     include Instapaper::API
+    include Instapaper::HTTP::Utils
 
     # An array of valid keys in the options hash when configuring a {Instapaper::API}
     VALID_OPTIONS_KEYS = [
-      :adapter,
       :consumer_key,
       :consumer_secret,
       :endpoint,
@@ -21,11 +18,6 @@ module Instapaper
       :proxy,
       :user_agent,
       :connection_options].freeze
-
-    # The adapter that will be used to connect if none is set
-    #
-    # @note The default faraday adapter is Net::HTTP.
-    DEFAULT_ADAPTER = :net_http
 
     # By default, don't set an application key
     DEFAULT_CONSUMER_KEY = nil
@@ -51,7 +43,6 @@ module Instapaper
     DEFAULT_CONNECTION_OPTIONS = {}
 
     # @private
-    attr_accessor :adapter
     attr_accessor :consumer_key
     attr_accessor :consumer_secret
     attr_accessor :endpoint
@@ -69,60 +60,15 @@ module Instapaper
       end
     end
 
-    private
-
-    def connection(raw = false) # rubocop:disable AbcSize, CyclomaticComplexity, MethodLength, PerceivedComplexity
-      merged_options = connection_defaults.merge(@connection_options)
-
-      Faraday.new(merged_options) do |builder|
-        if authenticated?
-          builder.use Faraday::Request::OAuth, authentication
-        else
-          builder.use Faraday::Request::OAuth, consumer_tokens
-        end
-        builder.use Faraday::Request::Multipart
-        builder.use Faraday::Request::UrlEncoded
-        builder.use Instapaper::API::Response::ParseJson unless raw
-        builder.use Faraday::Response::RaiseHttp1xxx
-        builder.adapter(adapter)
-      end
-    end
-
-    def connection_defaults
-      {
-        headers: {
-          'Accept' => 'application/json',
-          'User-Agent' => @user_agent,
-        },
-        proxy: @proxy,
-        url: @endpoint,
-      }
-    end
-
-    # Perform an HTTP POST request
-    def post(path, options = {}, raw = false)
-      request(:post, path, options, raw)
-    end
-
-    # Perform an HTTP request
-    def request(method, path, options, raw = false)
-      response = connection(raw).send(method) do |request|
-        request.path = path
-        request.body = options unless options.empty?
-      end
-      raw ? response : response.body
-    end
-    alias_method :perform_request, :request
-
     # Authentication hash
     #
     # @return [Hash]
-    def authentication
+    def credentials
       {
         consumer_key: @consumer_key,
         consumer_secret: @consumer_secret,
-        token: @oauth_token,
-        token_secret: @oauth_token_secret,
+        oauth_token: @oauth_token,
+        oauth_token_secret: @oauth_token_secret,
       }
     end
 
@@ -140,9 +86,10 @@ module Instapaper
       authentication.values.all?
     end
 
+    private
+
     # Reset all configuration options to defaults
     def reset # rubocop:disable MethodLength
-      @adapter            = DEFAULT_ADAPTER
       @consumer_key       = DEFAULT_CONSUMER_KEY
       @consumer_secret    = DEFAULT_CONSUMER_SECRET
       @endpoint           = DEFAULT_ENDPOINT

@@ -3,7 +3,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'instapaper/version'
 
 Gem::Specification.new do |spec|
-  spec.add_dependency 'faraday_middleware', '~> 0.7'
+  spec.add_dependency 'addressable', '~> 2.3'
+  spec.add_dependency 'http', '~> 0.7.1'
   spec.add_dependency 'multi_json', '~> 1'
   spec.add_dependency 'simple_oauth'
   spec.add_dependency 'values'

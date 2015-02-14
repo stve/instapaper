@@ -1,7 +1,8 @@
+require 'instapaper/http/request'
 require 'instapaper/object'
 
 module Instapaper
-  module API
+  module HTTP
     module Utils
       private
 
@@ -41,8 +42,12 @@ module Instapaper
 
       # @param path [String]
       # @param options [Hash]
-      def perform_post_with_empty_response(path, options)
-        perform_request(:post, path, options, true)
+      def perform_post_with_unparsed_response(path, options)
+        perform_request(:post, path, options.merge(raw: true))
+      end
+
+      def perform_request(method, path, options)
+        Instapaper::HTTP::Request.new(self, method, path, options).perform
       end
     end
   end
