@@ -44,7 +44,7 @@ module Instapaper
       BOOKMARK_ERRORS,
       FOLDER_ERRORS,
       HIGHLIGHT_ERRORS,
-    ].collect { |e| e.keys }.flatten
+    ].collect(&:keys).flatten
 
     # Create a new error from an HTTP response
     #

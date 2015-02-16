@@ -49,9 +49,9 @@ module Instapaper
       end
 
       def error(code)
-        if Instapaper::Error::CODES.index(code.to_i)
-          Instapaper::Error.from_response(code, @path)
-        end
+        return unless Instapaper::Error::CODES.index(code.to_i)
+
+        Instapaper::Error.from_response(code, @path)
       end
 
       def symbolize_keys!(object)
