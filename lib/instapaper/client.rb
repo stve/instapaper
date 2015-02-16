@@ -39,7 +39,8 @@ module Instapaper
       }
     end
 
-    def consumer_tokens
+    # @return [Hash]
+    def consumer_credentials
       {
         consumer_key: @consumer_key,
         consumer_secret: @consumer_secret,
