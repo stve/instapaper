@@ -39,33 +39,18 @@ module Instapaper
         @headers = Instapaper::HTTP::Headers.new(@client, @request_method, @uri, @options).request_headers
         options_key = @request_method == :get ? :params : :form
         response = ::HTTP.with(@headers).public_send(@request_method, @uri.to_s, options_key => @options)
-        response_body = raw ? response.to_s : symbolize_keys!(response.parse)
-        response_headers = response.headers
-        fail_or_return_response_body(response.code, response_body, response_headers)
+        fail_if_error(response)
+        raw ? response.to_s : symbolize_keys!(response.parse)
       end
 
-      def fail_or_return_response_body(code, body, headers)
-        error = nil # error(code, body, headers)
+      def fail_if_error(response)
+        error = error(response.code)
         fail(error) if error
-        body
       end
 
-      def error(code, body, headers)
-        klass = Instapaper::Error::ERRORS[code]
-        if klass == Instapaper::Error::Forbidden
-          forbidden_error(body, headers)
-        elsif !klass.nil?
-          klass.from_response(body, headers)
-        end
-      end
-
-      def forbidden_error(body, headers)
-        error = Instapaper::Error::Forbidden.from_response(body, headers)
-        klass = Instapaper::Error::FORBIDDEN_MESSAGES[error.message]
-        if klass
-          klass.from_response(body, headers)
-        else
-          error
+      def error(code)
+        if Instapaper::Error::CODES.index(code.to_i)
+          Instapaper::Error.from_response(code, @path)
         end
       end
 
