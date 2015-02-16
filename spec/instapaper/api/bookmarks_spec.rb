@@ -9,19 +9,19 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.bookmarks
       expect(a_post('/api/1/bookmarks/list'))
         .to have_been_made
     end
 
-    it 'should return an array containing bookmarks on success' do
+    it 'returns an array containing bookmarks on success' do
       bookmarks = client.bookmarks
       expect(bookmarks).to be_an Array
       expect(bookmarks.size).to eq(2)
     end
 
-    it 'should remove the meta and current user objects from the array' do
+    it 'removes the meta and current user objects from the array' do
       bookmarks = client.bookmarks
       bookmarks.each do |bookmark|
         expect(bookmark).to be_an Instapaper::Bookmark
@@ -36,13 +36,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_update_read_progress.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.update_read_progress(123, 0.5, @time)
       expect(a_post('/api/1/bookmarks/update_read_progress').with(body: {bookmark_id: '123', progress: '0.5', progress_timestamp: @time.to_i.to_s}))
         .to have_been_made
     end
 
-    it 'should return an array containing bookmarks on success' do
+    it 'returns an array containing bookmarks on success' do
       bookmark = client.update_read_progress(123, 0.5, @time)
       expect(bookmark).to be_an Instapaper::Bookmark
       expect(bookmark.progress).to eq('0.5')
@@ -55,13 +55,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_add.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
       expect(a_post('/api/1/bookmarks/add').with(body: {url: 'http://someurl.com', title: 'This is the title', description: 'This is the description'}))
         .to have_been_made
     end
 
-    it 'should return the bookmark on success' do
+    it 'returns the bookmark on success' do
       bookmark = client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
       expect(bookmark).to be_an Instapaper::Bookmark
     end
@@ -73,13 +73,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: '[]', headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.delete_bookmark(123)
       expect(a_post('/api/1/bookmarks/delete').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
-    it 'should return an array containing bookmarks on success' do
+    it 'returns an array containing bookmarks on success' do
       confirm = client.delete_bookmark(123)
       expect(confirm).to be_an Array
       expect(confirm).to be_empty
@@ -92,13 +92,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_star.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.star_bookmark(123)
       expect(a_post('/api/1/bookmarks/star').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
-    it 'should return a starred bookmark on success' do
+    it 'returns a starred bookmark on success' do
       bookmark = client.star_bookmark(123)
       expect(bookmark).to be_an Instapaper::Bookmark
       expect(bookmark.starred).to eq('1')
@@ -111,13 +111,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_unstar.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.unstar_bookmark(123)
       expect(a_post('/api/1/bookmarks/unstar').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
-    it 'should return an unstarred bookmark on success' do
+    it 'returns an unstarred bookmark on success' do
       bookmark = client.unstar_bookmark(123)
       expect(bookmark).to be_an Instapaper::Bookmark
       expect(bookmark.starred).to eq('0')
@@ -130,13 +130,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_archive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.archive_bookmark(123)
       expect(a_post('/api/1/bookmarks/archive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
-    it 'should return the bookmark on success' do
+    it 'returns the bookmark on success' do
       bookmark = client.archive_bookmark(123)
       expect(bookmark).to be_an Instapaper::Bookmark
     end
@@ -148,13 +148,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_unarchive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.unarchive_bookmark(123)
       expect(a_post('/api/1/bookmarks/unarchive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
-    it 'should return the bookmark on success' do
+    it 'returns the bookmark on success' do
       bookmark = client.unarchive_bookmark(123)
       expect(bookmark).to be_an Instapaper::Bookmark
     end
@@ -166,13 +166,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_move.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.move_bookmark(123, 12_345)
       expect(a_post('/api/1/bookmarks/move').with(body: {bookmark_id: '123', folder_id: '12345'}))
         .to have_been_made
     end
 
-    it 'should return the bookmark on success' do
+    it 'returns the bookmark on success' do
       bookmark = client.move_bookmark(123, 12_345)
       expect(bookmark).to be_an Instapaper::Bookmark
     end
@@ -184,13 +184,13 @@ describe Instapaper::Client::Bookmarks do
         .to_return(body: fixture('bookmarks_get_text.txt'), headers: {content_type: 'text/html; charset=utf-8'})
     end
 
-    it 'should get the correct resource' do
+    it 'gets the correct resource' do
       client.get_text(123)
       expect(a_post('/api/1/bookmarks/get_text').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
-    it "should return the bookmark's html on success" do
+    it "returns the bookmark's html on success" do
       bookmark = client.get_text(123)
       expect(bookmark.length).to be > 0
       expect(bookmark).to include("Ideo's Axioms for Starting Disruptive New Businesses")
