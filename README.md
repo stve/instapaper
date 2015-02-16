@@ -1,4 +1,8 @@
-# Instapaper
+# Instapaper [![Build Status](https://secure.travis-ci.org/stve/instapaper.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/stve/instapaper.png?travis)][gemnasium]
+
+[travis]: http://travis-ci.org/stve/instapaper
+[gemnasium]: https://gemnasium.com/stve/instapaper
+
 
 Instapaper is a ruby wrapper for interacting with [Instapaper's Full Developer API](http://www.instapaper.com/api/full).  Note that access to the Full API is restricted to Instapaper subscribers only.
 
@@ -13,11 +17,11 @@ Instapaper offers full support for all methods exposed through the Full API.  No
 ## Configuration
 
 ```ruby
-Instapaper.configure do |config|
-  config.consumer_key = YOUR_CONSUMER_KEY
-  config.consumer_secret = YOUR_CONSUMER_SECRET
-  config.oauth_token = YOUR_OAUTH_TOKEN
-  config.oauth_token_secret = YOUR_OAUTH_TOKEN_SECRET
+client = Instapaper::Client.new do |client|
+  client.consumer_key = YOUR_CONSUMER_KEY
+  client.consumer_secret = YOUR_CONSUMER_SECRET
+  client.access_token = YOUR_OAUTH_TOKEN
+  client.access_token_secret = YOUR_OAUTH_TOKEN_SECRET
 end
 ```
 
@@ -26,13 +30,13 @@ end
 To obtain an access token via xAuth:
 
 ```ruby
-Instapaper.access_token(username, password)
+client.token(username, password)
 ```
 
 You can also verify credentials once you have received tokens:
 
 ```ruby
-Instapaper.verify_credentials
+client.verify_credentials
 ```
 
 ## Bookmark Operations
@@ -40,51 +44,51 @@ Instapaper.verify_credentials
 Retrieve a list of bookmarks:
 
 ```ruby
-Instapaper.bookmarks
+clientclient.bookmarks
 ```
 
 Add a new bookmark:
 
 ```ruby
-Instapaper.add_bookmark('http://someurl.com', :title => 'This is the title', :description => 'This is the description')
+client.add_bookmark('http://someurl.com', :title => 'This is the title', :description => 'This is the description')
 ```
 
 Remove a bookmark:
 
 ```ruby
-Instapaper.delete_bookmark(bookmark_id)
+client.delete_bookmark(bookmark_id)
 ```
 
 Update read progress:
 
 ```ruby
-Instapaper.update_read_progress(bookmark_id, 0.5)
+client.update_read_progress(bookmark_id, 0.5)
 ```
 
 Star/Un-star a bookmark:
 
 ```ruby
-Instapaper.star(bookmark_id)
-Instapaper.unstar(bookmark_id)
+client.star_bookmark(bookmark_id)
+client.unstar_bookmark(bookmark_id)
 ```
 
 Archive/Un-archive a bookmark:
 
 ```ruby
-Instapaper.archive(bookmark_id)
-Instapaper.unarchive(bookmark_id)
+client.archive_bookmark(bookmark_id)
+client.unarchive_bookmark(bookmark_id)
 ```
 
 Move a bookmark to a folder:
 
 ```ruby
-Instapaper.move(bookmark_id, folder_id)
+client.move_bookmark(bookmark_id, folder_id)
 ```
 
 Obtain the text of a bookmark:
 
 ```ruby
-Instapaper.text(bookmark_id)
+client.get_text(bookmark_id)
 ```
 
 ## Folder Operations
@@ -93,48 +97,26 @@ Instapaper.text(bookmark_id)
 To obtain the list of folders:
 
 ```ruby
-Instapaper.folders
+client.folders
 ```
 
 You can add by passing a name:
 
 ```ruby
-Instapaper.add_folder('eventmachine')
+client.add_folder('eventmachine')
 ```
 
 And remove folders by referencing a folder by it's id.
 
 ```ruby
-Instapaper.delete_folder(folder_id)
+client.delete_folder(folder_id)
 ```
 
 Lastly, the folders can be reordered:
 
 ```ruby
-Instapaper.set_order(['folder_id1:2','folder_id2:1'])
+client.set_order(['folder_id1:2','folder_id2:1'])
 ```
-
-## Restrictions
-
-Users without an Instapaper Subscription may only invoke the following calls:
-
-```ruby
-Instapaper.access_token
-Instapaper.verify_credentials
-Instapaper.add_bookmark
-Instapaper.folders
-```
-
-## <a name="build"></a>Build Status
-[![Build Status](https://secure.travis-ci.org/stve/instapaper.png?branch=master)][travis]
-
-[travis]: http://travis-ci.org/stve/instapaper
-
-## <a name="dependencies"></a>Dependency Status
-[![Dependency Status](https://gemnasium.com/stve/instapaper.png?travis)][gemnasium]
-
-[gemnasium]: https://gemnasium.com/stve/instapaper
-
 
 ## Documentation
 
