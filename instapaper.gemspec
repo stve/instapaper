@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'http', '~> 0.7.1'
   spec.add_dependency 'multi_json', '~> 1'
   spec.add_dependency 'simple_oauth'
-  spec.add_dependency 'values'
+  spec.add_dependency 'virtus'
   spec.add_development_dependency 'bundler', '~> 1.0'
   spec.author        = 'Steve Agalloco'
   spec.description   = "Ruby Client for Instapaper's Full API"

@@ -19,7 +19,7 @@ module Instapaper
       # @param klass [Class]
       def perform_request_with_objects(request_method, path, options, klass)
         perform_request(request_method, path, options).collect do |element|
-          klass.with(element)
+          klass.new(element)
         end
       end
 
@@ -37,7 +37,7 @@ module Instapaper
       def perform_request_with_object(request_method, path, options, klass)
         response = perform_request(request_method, path, options)
         response = response.is_a?(Array) ? response.first : response
-        klass.with(response)
+        klass.new(response)
       end
 
       # @param path [String]

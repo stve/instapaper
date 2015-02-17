@@ -1,6 +1,16 @@
-require 'values'
+require 'virtus'
 
 module Instapaper
-  class Highlight < Value.new(:type, :highlight_id, :bookmark_id, :text, :position, :time)
+  class Highlight
+    include Virtus.value_object
+
+    values do
+      attribute :type, String
+      attribute :highlight_id, String
+      attribute :bookmark_id, String
+      attribute :text, String
+      attribute :position, String
+      attribute :time, String 
+   end
   end
 end

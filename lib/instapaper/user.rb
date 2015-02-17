@@ -1,6 +1,14 @@
-require 'values'
+require 'virtus'
 
 module Instapaper
-  class User < Value.new(:type, :user_id, :username, :subscription_is_active)
+  class User
+    include Virtus.value_object
+
+    values do
+     attribute :type, String
+     attribute :user_id, String
+     attribute :username, String
+     attribute :subscription_is_active, String
+   end
   end
 end
