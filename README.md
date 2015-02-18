@@ -4,7 +4,7 @@
 [gemnasium]: https://gemnasium.com/stve/instapaper
 
 
-Instapaper is a ruby wrapper for interacting with [Instapaper's Full Developer API](http://www.instapaper.com/api/full).  Note that access to the Full API is restricted to Instapaper subscribers only.
+Instapaper is a ruby wrapper for interacting with [Instapaper's Full API](https://www.instapaper.com/api/full).  Note that access to the Full API is restricted to Instapaper subscribers only.
 
 ## Installation
 
@@ -12,7 +12,21 @@ Instapaper is a ruby wrapper for interacting with [Instapaper's Full Developer A
 
 ## Usage
 
-Instapaper offers full support for all methods exposed through the Full API.  Note that Instapaper does not support the request-token/authorize workflow.  To obtain an access token, use the `access_token` method.
+This library offers full support for all methods exposed through Instapaper's Full API.  Note that Instapaper's API does not support the request-token/authorize workflow. To obtain an access token, use the `token` method.
+
+## Changes in 1.0.0
+
+If you've used earlier versions of this library, a lot has changed in version `1.x`. While not a total rewrite, I've changed a number of things based on my experience writing API libraries:
+
+* swapped out Faraday for http.rb
+* responses now return custom classes instead of Hashie::Rash objects
+* most API methods are more clear as to their behavior (i.e., `#star_bookmark` instead of just `#star`)
+* module-based configuration ane invocation has been removed, you'll now need to instantiate an `Instapaper::Client` instead (see usage below)
+
+Also new in `1.x`
+
+* Updates for version 1.1 of Instapaper's API
+* Support for Highlights API
 
 ## Configuration
 
