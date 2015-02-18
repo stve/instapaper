@@ -10,6 +10,6 @@ module Instapaper
       attribute :title, String
       attribute :sync_to_mobile, String
       attribute :position, String
-   end
+    end
   end
 end

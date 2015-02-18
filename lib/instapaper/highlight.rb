@@ -10,7 +10,7 @@ module Instapaper
       attribute :bookmark_id, String
       attribute :text, String
       attribute :position, String
-      attribute :time, String 
-   end
+      attribute :time, String
+    end
   end
 end

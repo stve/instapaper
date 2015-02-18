@@ -8,7 +8,7 @@ module Instapaper
     include Instapaper::API
     include Instapaper::HTTP::Utils
 
-    attr_accessor :access_token, :access_token_secret, :consumer_key, :consumer_secret, :proxy
+    attr_accessor :oauth_token, :oauth_token_secret, :consumer_key, :consumer_secret, :proxy
     attr_writer :user_agent
 
     # Initializes a new Client object
@@ -34,8 +34,8 @@ module Instapaper
       {
         consumer_key: @consumer_key,
         consumer_secret: @consumer_secret,
-        access_token: @access_token,
-        access_token_secret: @access_token_secret,
+        oauth_token: @oauth_token,
+        oauth_token_secret: @oauth_token_secret,
       }
     end
 

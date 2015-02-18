@@ -12,20 +12,20 @@ describe Instapaper::Client::OAuth do
     end
 
     it 'gets the correct resource' do
-      client.token('ohai', 'p455w0rd')
+      client.access_token('ohai', 'p455w0rd')
       expect(a_post('/api/1/oauth/access_token'))
         .to have_been_made
     end
 
     it 'returns the a hash containing an oauth token and secret' do
-      tokens = client.token('ohai', 'p455w0rd')
+      tokens = client.access_token('ohai', 'p455w0rd')
       expect(tokens).to be_a Hash
       expect(tokens.key?('oauth_token')).to be true
       expect(tokens.key?('oauth_token_secret')).to be true
     end
 
     it 'returns a hash containing the error on invalid credentials' do
-      tokens = client.token('inval1d', 'cr3dentials')
+      tokens = client.access_token('inval1d', 'cr3dentials')
       expect(tokens).to be_a Hash
       expect(tokens.key?('error')).to be true
     end

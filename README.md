@@ -12,7 +12,7 @@ Instapaper is a ruby wrapper for interacting with [Instapaper's Full API](https:
 
 ## Usage
 
-This library offers full support for all methods exposed through Instapaper's Full API.  Note that Instapaper's API does not support the request-token/authorize workflow. To obtain an access token, use the `token` method.
+This library offers full support for all methods exposed through Instapaper's Full API.  Note that Instapaper's API does not support the request-token/authorize workflow. To obtain an access token, use the `access_token` method.
 
 ## Changes in 1.0.0
 
@@ -34,8 +34,8 @@ Also new in `1.x`
 client = Instapaper::Client.new do |client|
   client.consumer_key = YOUR_CONSUMER_KEY
   client.consumer_secret = YOUR_CONSUMER_SECRET
-  client.access_token = YOUR_OAUTH_TOKEN
-  client.access_token_secret = YOUR_OAUTH_TOKEN_SECRET
+  client.oauth_token = YOUR_OAUTH_TOKEN
+  client.oauth_token_secret = YOUR_OAUTH_TOKEN_SECRET
 end
 ```
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Instapaper::Error do
   before do
-    @client = Instapaper::Client.new(consumer_key: 'CK', consumer_secret: 'CS', access_token: 'AT', access_token_secret: 'AS')
+    @client = Instapaper::Client.new(consumer_key: 'CK', consumer_secret: 'CS', oauth_token: 'AT', oauth_token_secret: 'AS')
   end
 
   describe '#code' do
@@ -26,7 +26,7 @@ describe Instapaper::Error do
           .to_return(status: status, body: '', headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
-        expect { @client.token('foo', 'bar') }.to raise_error(Instapaper::Error)
+        expect { @client.access_token('foo', 'bar') }.to raise_error(Instapaper::Error)
       end
     end
   end
