@@ -23,9 +23,7 @@ describe Instapaper::Client::OAuth do
     end
 
     it 'returns a hash containing the error on invalid credentials' do
-      expect {
-        client.access_token('inval1d', 'cr3dentials')
-      }.to raise_error(Instapaper::Error::OAuthError)
+      expect { client.access_token('inval1d', 'cr3dentials') }.to raise_error(Instapaper::Error::OAuthError)
     end
   end
 end
