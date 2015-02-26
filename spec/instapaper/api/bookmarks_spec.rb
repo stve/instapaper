@@ -15,15 +15,15 @@ describe Instapaper::Client::Bookmarks do
         .to have_been_made
     end
 
-    it 'returns an array containing bookmarks on success' do
-      bookmarks = client.bookmarks
-      expect(bookmarks).to be_an Array
-      expect(bookmarks.size).to eq(2)
+    it 'returns an Instappaer::BookmarkList on success' do
+      list = client.bookmarks
+      expect(list).to be_an Instapaper::BookmarkList
     end
 
-    it 'removes the meta and current user objects from the array' do
-      bookmarks = client.bookmarks
-      bookmarks.each do |bookmark|
+    it 'includes all objects in the response' do
+      list = client.bookmarks
+      expect(list.user).to be_an Instapaper::User
+      list.bookmarks.each do |bookmark|
         expect(bookmark).to be_an Instapaper::Bookmark
       end
     end

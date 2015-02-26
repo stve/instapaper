@@ -1,4 +1,5 @@
 require 'instapaper/bookmark'
+require 'instapaper/bookmark_list'
 
 module Instapaper
   module API
@@ -8,8 +9,9 @@ module Instapaper
       # @option limit: Optional. A number between 1 and 500, default 25.
       # @option folder_id: Optional. Possible values are unread (default), starred, archive, or a folder_id value from /api/1/folders/list.
       # @option have: Optional. A concatenation of bookmark_id values that the client already has from the specified folder. See below.
+      # @option highlights: Optional. A '-' delimited list of highlight IDs that the client already has from the specified bookmarks.
       def bookmarks(options = {})
-        perform_post_with_objects('/api/1/bookmarks/list', options, Instapaper::Object)[2..-1]
+        perform_post_with_object('/api/1/bookmarks/list', options, Instapaper::BookmarkList)
       end
 
       # Updates the user's reading progress on a single article.

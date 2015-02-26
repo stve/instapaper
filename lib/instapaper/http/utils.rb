@@ -1,5 +1,4 @@
 require 'instapaper/http/request'
-require 'instapaper/object'
 
 module Instapaper
   module HTTP
