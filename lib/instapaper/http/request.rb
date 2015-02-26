@@ -5,10 +5,12 @@ require 'net/https'
 require 'openssl'
 require 'instapaper/error'
 require 'instapaper/http/headers'
+require 'instapaper/utils'
 
 module Instapaper
   module HTTP
     class Request
+      include Instapaper::Utils
       BASE_URL = 'https://www.instapaper.com'
       attr_accessor :client, :headers, :multipart, :options, :path,
                     :rate_limit, :request_method, :uri
@@ -62,19 +64,6 @@ module Instapaper
         rescue
           response.to_s
         end
-      end
-
-      def symbolize_keys!(object)
-        if object.is_a?(Array)
-          object.each_with_index do |val, index|
-            object[index] = symbolize_keys!(val)
-          end
-        elsif object.is_a?(Hash)
-          object.keys.each do |key|
-            object[key.to_sym] = symbolize_keys!(object.delete(key))
-          end
-        end
-        object
       end
     end
   end

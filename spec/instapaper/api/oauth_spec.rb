@@ -19,15 +19,13 @@ describe Instapaper::Client::OAuth do
 
     it 'returns the a hash containing an oauth token and secret' do
       tokens = client.access_token('ohai', 'p455w0rd')
-      expect(tokens).to be_a Hash
-      expect(tokens.key?('oauth_token')).to be true
-      expect(tokens.key?('oauth_token_secret')).to be true
+      expect(tokens).to be_an Instapaper::Credentials
     end
 
     it 'returns a hash containing the error on invalid credentials' do
-      tokens = client.access_token('inval1d', 'cr3dentials')
-      expect(tokens).to be_a Hash
-      expect(tokens.key?('error')).to be true
+      expect {
+        client.access_token('inval1d', 'cr3dentials')
+      }.to raise_error(Instapaper::Error::OAuthError)
     end
   end
 end

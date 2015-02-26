@@ -7,6 +7,7 @@ module Instapaper
     BookmarkError = Class.new(self)
     FolderError = Class.new(self)
     HighlightError = Class.new(self)
+    OAuthError = Class.new(self)
 
     ERRORS = {
       1040 => 'Rate-limit exceeded',
