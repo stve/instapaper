@@ -21,9 +21,10 @@ describe Instapaper::Error do
 
   Instapaper::Error::ERRORS.each do |status, exception|
     context "when HTTP status is #{status}" do
+      let(:response_body) { %{[{"type":"error", "error_code":#{status}, "message":"Error Message URL"}]} }
       before do
         stub_post('/api/1/oauth/access_token')
-          .to_return(status: status, body: '', headers: {content_type: 'application/json; charset=utf-8'})
+          .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
         expect { @client.access_token('foo', 'bar') }.to raise_error(Instapaper::Error)
@@ -33,9 +34,10 @@ describe Instapaper::Error do
 
   Instapaper::Error::BOOKMARK_ERRORS.each do |status, exception|
     context "when HTTP status is #{status}" do
+      let(:response_body) { %{[{"type":"error", "error_code":#{status}, "message":"Error Message URL"}]} }
       before do
         stub_post('/api/1/bookmarks/list')
-          .to_return(status: status, body: '', headers: {content_type: 'application/json; charset=utf-8'})
+          .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
         expect { @client.bookmarks }.to raise_error(Instapaper::Error::BookmarkError)
@@ -45,9 +47,10 @@ describe Instapaper::Error do
 
   Instapaper::Error::FOLDER_ERRORS.each do |status, exception|
     context "when HTTP status is #{status}" do
+      let(:response_body) { %{[{"type":"error", "error_code":#{status}, "message":"Error Message URL"}]} }
       before do
         stub_post('/api/1/folders/list')
-          .to_return(status: status, body: '', headers: {content_type: 'application/json; charset=utf-8'})
+          .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
         expect { @client.folders }.to raise_error(Instapaper::Error::FolderError)
@@ -57,9 +60,10 @@ describe Instapaper::Error do
 
   Instapaper::Error::HIGHLIGHT_ERRORS.each do |status, exception|
     context "when HTTP status is #{status}" do
+      let(:response_body) { %{[{"type":"error", "error_code":#{status}, "message":"Error Message URL"}]} }
       before do
         stub_post('/api/1.1/bookmarks/123/highlights')
-          .to_return(status: status, body: fixture('highlights_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
+          .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
         expect { @client.highlights('123') }.to raise_error(Instapaper::Error::HighlightError)

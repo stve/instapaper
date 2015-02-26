@@ -39,19 +39,29 @@ module Instapaper
         @headers = Instapaper::HTTP::Headers.new(@client, @request_method, @uri, @options).request_headers
         options_key = @request_method == :get ? :params : :form
         response = ::HTTP.with(@headers).public_send(@request_method, @uri.to_s, options_key => @options)
-        fail_if_error(response)
-        raw ? response.to_s : symbolize_keys!(response.parse)
+        fail_if_error(parsed_response(response))
+        raw ? response.to_s : parsed_response(response)
       end
 
       def fail_if_error(response)
-        error = error(response.code)
+        error = error(response)
         fail(error) if error
       end
 
-      def error(code)
-        return unless Instapaper::Error::CODES.index(code.to_i)
+      def error(response)
+        return unless response.is_a?(Array)
+        return unless response.size > 0
+        return unless response.first[:type] == 'error'
 
-        Instapaper::Error.from_response(code, @path)
+        Instapaper::Error.from_response(response.first[:error_code], @path)
+      end
+
+      def parsed_response(response)
+        @parsed_response ||= begin
+          symbolize_keys!(response.parse)
+        rescue
+          response.to_s
+        end
       end
 
       def symbolize_keys!(object)
