@@ -21,10 +21,8 @@ If you've used earlier versions of this library, a lot has changed in version `1
 * swapped out Faraday for http.rb
 * responses now return custom classes instead of Hashie::Rash objects
 * most API methods are more clear as to their behavior (i.e., `#star_bookmark` instead of just `#star`)
-* module-based configuration ane invocation has been removed, you'll now need to instantiate an `Instapaper::Client` instead (see usage below)
-
-Also new in `1.x`
-
+* module-based configuration and invocation has been removed, you'll now need to instantiate an `Instapaper::Client` instead (see usage below)
+* Improved error handling
 * Updates for version 1.1 of Instapaper's API
 * Support for Highlights API
 
@@ -58,7 +56,7 @@ client.verify_credentials
 Retrieve a list of bookmarks:
 
 ```ruby
-clientclient.bookmarks
+client.bookmarks
 ```
 
 Add a new bookmark:
@@ -142,7 +140,7 @@ client.set_order(['folder_id1:2','folder_id2:1'])
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
+* Commit, do not mess with Rakefile, gem version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
