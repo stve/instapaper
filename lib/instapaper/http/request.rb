@@ -41,11 +41,23 @@ module Instapaper
         @headers = Instapaper::HTTP::Headers.new(@client, @request_method, @uri, @options).request_headers
         options_key = @request_method == :get ? :params : :form
         response = ::HTTP.with(@headers).public_send(@request_method, @uri.to_s, options_key => @options)
-        fail_if_error(parsed_response(response))
+        fail_if_error(response, raw)
+        fail_if_error_in_body(parsed_response(response))
         raw ? response.to_s : parsed_response(response)
       end
 
-      def fail_if_error(response)
+      def fail_if_error(response, raw)
+        fail Instapaper::Error::ServiceUnavailableError if response.status != 200
+        return if raw
+
+        begin
+          response.parse
+        rescue JSON::ParserError
+          fail Instapaper::Error::ServiceUnavailableError
+        end
+      end
+
+      def fail_if_error_in_body(response)
         error = error(response)
         fail(error) if error
       end

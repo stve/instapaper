@@ -4,6 +4,7 @@ module Instapaper
     # @return [Integer]
     attr_reader :code
 
+    ServiceUnavailableError = Class.new(self)
     BookmarkError = Class.new(self)
     FolderError = Class.new(self)
     HighlightError = Class.new(self)
