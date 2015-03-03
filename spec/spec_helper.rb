@@ -1,9 +1,7 @@
 unless ENV['CI']
   require 'simplecov'
   SimpleCov.start do
-    add_filter '.bundle'
-    add_group 'Instapaper', 'lib/instapaper'
-    add_group 'Specs', 'spec'
+    add_filter '/spec/'
   end
 end
 
