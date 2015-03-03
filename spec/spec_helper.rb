@@ -17,7 +17,6 @@ def stub_post(path)
   stub_request(:post, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
-
 def fixture_path
   File.expand_path('../fixtures', __FILE__)
 end
