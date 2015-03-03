@@ -53,11 +53,15 @@ module Instapaper
     # @param response [HTTP::Response]
     # @return [Instapaper::Error]
     def self.from_response(code, path)
-      case path
-      when /highlights/ then HighlightError.new(HIGHLIGHT_ERRORS[code], code)
-      when /bookmarks/ then BookmarkError.new(BOOKMARK_ERRORS[code], code)
-      when /folders/ then FolderError.new(FOLDER_ERRORS[code], code)
-      else new(ERRORS[code], code)
+      if ERRORS.keys.include?(code)
+        new(ERRORS[code], code)
+      else
+        case path
+        when /highlights/ then HighlightError.new(HIGHLIGHT_ERRORS[code], code)
+        when /bookmarks/ then BookmarkError.new(BOOKMARK_ERRORS[code], code)
+        when /folders/ then FolderError.new(FOLDER_ERRORS[code], code)
+        else new('Unknown Error Code', code)
+        end
       end
     end
 
