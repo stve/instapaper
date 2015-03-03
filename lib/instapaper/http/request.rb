@@ -46,9 +46,9 @@ module Instapaper
       end
 
       def fail_if_error(response, raw)
-        fail_if_error_response_code(response)
         fail_if_error_unparseable_response(response) unless raw
         fail_if_error_in_body(parsed_response(response))
+        fail_if_error_response_code(response)
       end
 
       def fail_if_error_response_code(response)
