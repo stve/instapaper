@@ -42,7 +42,7 @@ end
 To obtain an access token via xAuth:
 
 ```ruby
-client.token(username, password)
+client.access_token(username, password)
 ```
 
 You can also verify credentials once you have received tokens:
@@ -62,7 +62,12 @@ client.bookmarks
 Add a new bookmark:
 
 ```ruby
-client.add_bookmark('http://someurl.com', :title => 'This is the title', :description => 'This is the description')
+bookmark = {
+  title: 'This is the title',
+  description: 'This is the description',
+}
+
+client.add_bookmark('http://someurl.com', bookmark)
 ```
 
 Remove a bookmark:
@@ -128,6 +133,31 @@ Lastly, the folders can be reordered:
 
 ```ruby
 client.set_order(['folder_id1:2','folder_id2:1'])
+```
+
+## Highlights Operations
+
+Obtain highlights for a bookmark:
+
+```ruby
+client.highlights(bookmark_id)
+```
+
+Add a highlight for a bookmark:
+
+```ruby
+highlight = {
+  text: 'And so we beat on, boats against the current, borne back ceaselessly into the past.',
+  position: 20,
+}
+
+client.add_highlight(bookmark_id, highlight)
+```
+
+Remove a highlight:
+
+```ruby
+client.delete_highlight(highlight_id)
 ```
 
 ## Documentation
