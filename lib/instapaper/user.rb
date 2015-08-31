@@ -5,10 +5,10 @@ module Instapaper
     include Virtus.value_object
 
     values do
-      attribute :type, String
-      attribute :user_id, String
       attribute :username, String
-      attribute :subscription_is_active, String
+      attribute :user_id, Integer
+      attribute :type, String
+      attribute :subscription_is_active, Axiom::Types::Boolean
     end
   end
 end
