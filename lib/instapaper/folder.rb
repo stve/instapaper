@@ -5,11 +5,13 @@ module Instapaper
     include Virtus.value_object
 
     values do
-      attribute :type, String
-      attribute :folder_id, String
       attribute :title, String
-      attribute :sync_to_mobile, String
+      attribute :display_title, String
+      attribute :sync_to_mobile, Axiom::Types::Boolean
+      attribute :folder_id, Integer
       attribute :position, String
+      attribute :type, String
+      attribute :slug, String
     end
   end
 end
