@@ -5,6 +5,7 @@ module Instapaper
     # Defines methods related to highlights
     module Highlights
       # List highlights for a bookmark
+      # @param bookmark_id [String, Integer]
       def highlights(bookmark_id)
         perform_post_with_objects("/api/1.1/bookmarks/#{bookmark_id}/highlights", {}, Instapaper::Highlight)
       end
@@ -16,7 +17,7 @@ module Instapaper
       # @option options [String] :text The text for the highlight (HTML tags in text parameter should be unescaped.)
       # @option options [String, Integer] :posiiton The 0-indexed position of text in the content. Defaults to 0.
       # @return [Instapaper::Highlight]
-      def highlight(bookmark_id, options = {})
+      def add_highlight(bookmark_id, options = {})
         perform_post_with_object("/api/1.1/bookmarks/#{bookmark_id}/highlight", options, Instapaper::Highlight)
       end
 

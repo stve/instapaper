@@ -22,19 +22,19 @@ describe Instapaper::Client::Highlights do
     end
   end
 
-  describe '#highlight' do
+  describe '#add_highlight' do
     before do
       stub_post('/api/1.1/bookmarks/123/highlight')
         .to_return(status: 200, body: fixture('highlight.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
-      client.highlight(123, text: 'This is the highlighted text.', position: 22)
+      client.add_highlight(123, text: 'This is the highlighted text.', position: 22)
       expect(a_post('/api/1.1/bookmarks/123/highlight')).to have_been_made
     end
 
     it 'returns an array containing folders on success' do
-      highlight = client.highlight(123, text: 'This is the highlighted text.', position: 22)
+      highlight = client.add_highlight(123, text: 'This is the highlighted text.', position: 22)
       expect(highlight).to be_an Instapaper::Highlight
     end
   end
