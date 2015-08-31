@@ -5,17 +5,17 @@ module Instapaper
     include Virtus.value_object
 
     values do
-      attribute :type, String
-      attribute :bookmark_id, String
-      attribute :url, String
-      attribute :title, String
+      attribute :instapaper_hash, String
       attribute :description, String
-      attribute :time, String
-      attribute :starred, String
+      attribute :bookmark_id, Integer
       attribute :private_source, String
-      attribute :hash, String
+      attribute :title, String
+      attribute :url, String
+      attribute :progress_timestamp, DateTime
+      attribute :time, DateTime
       attribute :progress, String
-      attribute :progress_timestamp, String
+      attribute :starred, String
+      attribute :type, String
     end
   end
 end

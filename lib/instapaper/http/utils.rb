@@ -18,7 +18,7 @@ module Instapaper
       # @param klass [Class]
       def perform_request_with_objects(request_method, path, options, klass)
         perform_request(request_method, path, options).collect do |element|
-          klass.new(element)
+          klass.new(coerce_hash(element))
         end
       end
 
@@ -36,7 +36,7 @@ module Instapaper
       def perform_request_with_object(request_method, path, options, klass)
         response = perform_request(request_method, path, options)
         response = response.is_a?(Array) ? response.first : response
-        klass.new(response)
+        klass.new(coerce_hash(response))
       end
 
       # @param path [String]
@@ -47,6 +47,13 @@ module Instapaper
 
       def perform_request(method, path, options)
         Instapaper::HTTP::Request.new(self, method, path, options).perform
+      end
+
+      def coerce_hash(response)
+        if response.key?('hash')
+          response['instapaper_hash'] = response.delete('hash')
+        end
+        response
       end
     end
   end
