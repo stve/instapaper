@@ -5,12 +5,10 @@ require 'net/https'
 require 'openssl'
 require 'instapaper/error'
 require 'instapaper/http/headers'
-require 'instapaper/utils'
 
 module Instapaper
   module HTTP
     class Request
-      include Instapaper::Utils
       BASE_URL = 'https://www.instapaper.com'
       attr_accessor :client, :headers, :multipart, :options, :path,
                     :rate_limit, :request_method, :uri
@@ -69,16 +67,16 @@ module Instapaper
       def error(response)
         return unless response.is_a?(Array)
         return unless response.size > 0
-        return unless response.first[:type] == 'error'
+        return unless response.first['type'] == 'error'
 
-        Instapaper::Error.from_response(response.first[:error_code], @path)
+        Instapaper::Error.from_response(response.first['error_code'], @path)
       end
 
       def parsed_response(response)
         @parsed_response ||= begin
-          symbolize_keys!(response.parse)
+          response.parse
         rescue
-          response.to_s
+          response.body
         end
       end
     end
