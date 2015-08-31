@@ -15,7 +15,7 @@ describe Instapaper::Client::Bookmarks do
         .to have_been_made
     end
 
-    it 'returns an Instappaer::BookmarkList on success' do
+    it 'returns an Instapaper::BookmarkList on success' do
       list = client.bookmarks
       expect(list).to be_an Instapaper::BookmarkList
     end
