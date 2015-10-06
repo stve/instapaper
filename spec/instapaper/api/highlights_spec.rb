@@ -5,13 +5,13 @@ describe Instapaper::Client::Highlights do
 
   describe '#highlights' do
     before do
-      stub_post('/api/1.1/bookmarks/123/highlights')
+      stub_get('/api/1.1/bookmarks/123/highlights')
         .to_return(status: 200, body: fixture('highlights_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.highlights(123)
-      expect(a_post('/api/1.1/bookmarks/123/highlights')).to have_been_made
+      expect(a_get('/api/1.1/bookmarks/123/highlights')).to have_been_made
     end
 
     it 'returns an array containing folders on success' do

@@ -12,6 +12,13 @@ module Instapaper
         perform_request_with_objects(:post, path, options, klass)
       end
 
+      # @param path [String]
+      # @param options [Hash]
+      # @param klass [Class]
+      def perform_get_with_objects(path, options, klass)
+        perform_request_with_objects(:get, path, options, klass)
+      end
+
       # @param request_method [Symbol]
       # @param path [String]
       # @param options [Hash]

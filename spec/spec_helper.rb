@@ -13,8 +13,16 @@ def a_post(path)
   a_request(:post, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
+def a_get(path)
+  a_request(:get, Instapaper::HTTP::Request::BASE_URL + path)
+end
+
 def stub_post(path)
   stub_request(:post, Instapaper::HTTP::Request::BASE_URL + path)
+end
+
+def stub_get(path)
+  stub_request(:get, Instapaper::HTTP::Request::BASE_URL + path)
 end
 
 def fixture_path

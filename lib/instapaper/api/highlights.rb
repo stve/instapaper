@@ -7,7 +7,7 @@ module Instapaper
       # List highlights for a bookmark
       # @param bookmark_id [String, Integer]
       def highlights(bookmark_id)
-        perform_post_with_objects("/api/1.1/bookmarks/#{bookmark_id}/highlights", {}, Instapaper::Highlight)
+        perform_get_with_objects("/api/1.1/bookmarks/#{bookmark_id}/highlights", {}, Instapaper::Highlight)
       end
 
       # Create a new highlight
