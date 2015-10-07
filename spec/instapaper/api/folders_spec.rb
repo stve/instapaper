@@ -5,13 +5,13 @@ describe Instapaper::Client::Folders do
 
   describe '#folders' do
     before do
-      stub_post('/api/1/folders/list')
+      stub_post('/api/1.1/folders/list')
         .to_return(body: fixture('folders_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.folders
-      expect(a_post('/api/1/folders/list'))
+      expect(a_post('/api/1.1/folders/list'))
         .to have_been_made
     end
 
@@ -25,13 +25,13 @@ describe Instapaper::Client::Folders do
 
   describe '#add_folder' do
     before do
-      stub_post('/api/1/folders/add').with(body: {title: 'Ruby'})
+      stub_post('/api/1.1/folders/add').with(body: {title: 'Ruby'})
         .to_return(body: fixture('folders_add.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.add_folder('Ruby')
-      expect(a_post('/api/1/folders/add'))
+      expect(a_post('/api/1.1/folders/add'))
         .to have_been_made
     end
 
@@ -43,13 +43,13 @@ describe Instapaper::Client::Folders do
 
   describe '#delete_folder' do
     before do
-      stub_post('/api/1/folders/delete'). with(body: {folder_id: '1'})
+      stub_post('/api/1.1/folders/delete'). with(body: {folder_id: '1'})
         .to_return(body: fixture('folders_delete.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.delete_folder('1')
-      expect(a_post('/api/1/folders/delete'))
+      expect(a_post('/api/1.1/folders/delete'))
         .to have_been_made
     end
 
@@ -61,13 +61,13 @@ describe Instapaper::Client::Folders do
 
   describe '#set_order' do
     before do
-      stub_post('/api/1/folders/set_order'). with(body: {order: '1121173:2,1121174:1'})
+      stub_post('/api/1.1/folders/set_order'). with(body: {order: '1121173:2,1121174:1'})
         .to_return(body: fixture('folders_set_order.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.set_order(['1121173:2', '1121174:1'])
-      expect(a_post('/api/1/folders/set_order'))
+      expect(a_post('/api/1.1/folders/set_order'))
         .to have_been_made
     end
 
