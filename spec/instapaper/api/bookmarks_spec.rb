@@ -5,13 +5,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#bookmarks' do
     before do
-      stub_post('/api/1/bookmarks/list')
+      stub_post('/api/1.1/bookmarks/list')
         .to_return(body: fixture('bookmarks_list.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.bookmarks
-      expect(a_post('/api/1/bookmarks/list'))
+      expect(a_post('/api/1.1/bookmarks/list'))
         .to have_been_made
     end
 
@@ -32,13 +32,13 @@ describe Instapaper::Client::Bookmarks do
   describe '#update_read_progress' do
     before do
       @time = Time.now
-      stub_post('/api/1/bookmarks/update_read_progress')
+      stub_post('/api/1.1/bookmarks/update_read_progress')
         .to_return(body: fixture('bookmarks_update_read_progress.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.update_read_progress(123, 0.5, @time)
-      expect(a_post('/api/1/bookmarks/update_read_progress').with(body: {bookmark_id: '123', progress: '0.5', progress_timestamp: @time.to_i.to_s}))
+      expect(a_post('/api/1.1/bookmarks/update_read_progress').with(body: {bookmark_id: '123', progress: '0.5', progress_timestamp: @time.to_i.to_s}))
         .to have_been_made
     end
 
@@ -51,13 +51,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#add_bookmark' do
     before do
-      stub_post('/api/1/bookmarks/add')
+      stub_post('/api/1.1/bookmarks/add')
         .to_return(body: fixture('bookmarks_add.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
-      expect(a_post('/api/1/bookmarks/add').with(body: {url: 'http://someurl.com', title: 'This is the title', description: 'This is the description'}))
+      expect(a_post('/api/1.1/bookmarks/add').with(body: {url: 'http://someurl.com', title: 'This is the title', description: 'This is the description'}))
         .to have_been_made
     end
 
@@ -69,13 +69,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#delete_bookmark' do
     before do
-      stub_post('/api/1/bookmarks/delete')
+      stub_post('/api/1.1/bookmarks/delete')
         .to_return(body: '[]', headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.delete_bookmark(123)
-      expect(a_post('/api/1/bookmarks/delete').with(body: {bookmark_id: '123'}))
+      expect(a_post('/api/1.1/bookmarks/delete').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -88,13 +88,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#star_bookmark' do
     before do
-      stub_post('/api/1/bookmarks/star')
+      stub_post('/api/1.1/bookmarks/star')
         .to_return(body: fixture('bookmarks_star.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.star_bookmark(123)
-      expect(a_post('/api/1/bookmarks/star').with(body: {bookmark_id: '123'}))
+      expect(a_post('/api/1.1/bookmarks/star').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -107,13 +107,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#unstar_bookmark' do
     before do
-      stub_post('/api/1/bookmarks/unstar')
+      stub_post('/api/1.1/bookmarks/unstar')
         .to_return(body: fixture('bookmarks_unstar.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.unstar_bookmark(123)
-      expect(a_post('/api/1/bookmarks/unstar').with(body: {bookmark_id: '123'}))
+      expect(a_post('/api/1.1/bookmarks/unstar').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -126,13 +126,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#archive_bookmark' do
     before do
-      stub_post('/api/1/bookmarks/archive')
+      stub_post('/api/1.1/bookmarks/archive')
         .to_return(body: fixture('bookmarks_archive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.archive_bookmark(123)
-      expect(a_post('/api/1/bookmarks/archive').with(body: {bookmark_id: '123'}))
+      expect(a_post('/api/1.1/bookmarks/archive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -144,13 +144,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#unarchive_bookmark' do
     before do
-      stub_post('/api/1/bookmarks/unarchive')
+      stub_post('/api/1.1/bookmarks/unarchive')
         .to_return(body: fixture('bookmarks_unarchive.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.unarchive_bookmark(123)
-      expect(a_post('/api/1/bookmarks/unarchive').with(body: {bookmark_id: '123'}))
+      expect(a_post('/api/1.1/bookmarks/unarchive').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
@@ -162,13 +162,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#move_bookmark' do
     before do
-      stub_post('/api/1/bookmarks/move')
+      stub_post('/api/1.1/bookmarks/move')
         .to_return(body: fixture('bookmarks_move.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.move_bookmark(123, 12_345)
-      expect(a_post('/api/1/bookmarks/move').with(body: {bookmark_id: '123', folder_id: '12345'}))
+      expect(a_post('/api/1.1/bookmarks/move').with(body: {bookmark_id: '123', folder_id: '12345'}))
         .to have_been_made
     end
 
@@ -180,13 +180,13 @@ describe Instapaper::Client::Bookmarks do
 
   describe '#get_text' do
     before do
-      stub_post('/api/1/bookmarks/get_text')
+      stub_post('/api/1.1/bookmarks/get_text')
         .to_return(body: fixture('bookmarks_get_text.txt'), headers: {content_type: 'text/html; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
       client.get_text(123)
-      expect(a_post('/api/1/bookmarks/get_text').with(body: {bookmark_id: '123'}))
+      expect(a_post('/api/1.1/bookmarks/get_text').with(body: {bookmark_id: '123'}))
         .to have_been_made
     end
 
