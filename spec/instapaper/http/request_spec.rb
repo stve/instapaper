@@ -6,7 +6,7 @@ describe Instapaper::HTTP::Request do
   describe 'error handling' do
     context 'when receiving a non-200 response' do
       before do
-        stub_post('/api/1/folders/list')
+        stub_post('/api/1.1/folders/list')
           .to_return(status: 503, body: '', headers: {content_type: 'application/json; charset=utf-8'})
       end
       it 'raises a ServiceUnavailableError' do
@@ -16,7 +16,7 @@ describe Instapaper::HTTP::Request do
 
     context 'when failing to parse json' do
       before do
-        stub_post('/api/1/folders/list')
+        stub_post('/api/1.1/folders/list')
           .to_return(status: 200, body: '{"key":"value}', headers: {content_type: 'application/json; charset=utf-8'})
       end
       it 'raises a ServiceUnavailableError' do
