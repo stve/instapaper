@@ -23,7 +23,7 @@ describe Instapaper::Error do
     context "when HTTP status is #{status}" do
       let(:response_body) { %([{"type":"error", "error_code":#{status}, "message":"Error Message"}]) }
       before do
-        stub_post('/api/1/oauth/access_token')
+        stub_post('/api/1.1/oauth/access_token')
           .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
@@ -36,7 +36,7 @@ describe Instapaper::Error do
     context "when HTTP status is #{status}" do
       let(:response_body) { %([{"type":"error", "error_code":#{status}, "message":"Error Message"}]) }
       before do
-        stub_post('/api/1/bookmarks/list')
+        stub_post('/api/1.1/bookmarks/list')
           .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
@@ -49,7 +49,7 @@ describe Instapaper::Error do
     context "when HTTP status is #{status}" do
       let(:response_body) { %([{"type":"error", "error_code":#{status}, "message":"Error Message"}]) }
       before do
-        stub_post('/api/1/folders/list')
+        stub_post('/api/1.1/folders/list')
           .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
@@ -62,7 +62,7 @@ describe Instapaper::Error do
     context "when HTTP status is #{status}" do
       let(:response_body) { %([{"type":"error", "error_code":#{status}, "message":"Error Message"}]) }
       before do
-        stub_post('/api/1.1/bookmarks/123/highlights')
+        stub_get('/api/1.1/bookmarks/123/highlights')
           .to_return(status: 200, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
       end
       it "raises #{exception}" do
