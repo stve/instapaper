@@ -12,5 +12,9 @@ module Instapaper
       attribute :highlights, Array[Instapaper::Highlight]
       attribute :delete_ids, Array[Integer]
     end
+
+    def each
+      bookmarks.each { |bookmark| yield(bookmark) }
+    end
   end
 end
