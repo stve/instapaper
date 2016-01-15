@@ -25,7 +25,8 @@ describe Instapaper::Client::Folders do
 
   describe '#add_folder' do
     before do
-      stub_post('/api/1.1/folders/add').with(body: {title: 'Ruby'})
+      stub_post('/api/1.1/folders/add')
+        .with(body: {title: 'Ruby'})
         .to_return(body: fixture('folders_add.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
@@ -43,7 +44,8 @@ describe Instapaper::Client::Folders do
 
   describe '#delete_folder' do
     before do
-      stub_post('/api/1.1/folders/delete'). with(body: {folder_id: '1'})
+      stub_post('/api/1.1/folders/delete')
+        .with(body: {folder_id: '1'})
         .to_return(body: fixture('folders_delete.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
@@ -61,7 +63,8 @@ describe Instapaper::Client::Folders do
 
   describe '#set_order' do
     before do
-      stub_post('/api/1.1/folders/set_order'). with(body: {order: '1121173:2,1121174:1'})
+      stub_post('/api/1.1/folders/set_order')
+        .with(body: {order: '1121173:2,1121174:1'})
         .to_return(body: fixture('folders_set_order.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 

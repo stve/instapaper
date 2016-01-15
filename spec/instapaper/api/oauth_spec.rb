@@ -5,9 +5,12 @@ describe Instapaper::Client::OAuth do
 
   describe '#token' do
     before do
-      stub_post('/api/1.1/oauth/access_token').with(body: {x_auth_username: 'ohai', x_auth_password: 'p455w0rd', x_auth_mode: 'client_auth'})
+      stub_post('/api/1.1/oauth/access_token')
+        .with(body: {x_auth_username: 'ohai', x_auth_password: 'p455w0rd', x_auth_mode: 'client_auth'})
         .to_return(body: fixture('access_token.txt'), headers: {content_type: 'text/plain; charset=utf-8'})
-      stub_post('/api/1.1/oauth/access_token').with(body: {x_auth_username: 'inval1d', x_auth_password: 'cr3dentials', x_auth_mode: 'client_auth'})
+
+      stub_post('/api/1.1/oauth/access_token')
+        .with(body: {x_auth_username: 'inval1d', x_auth_password: 'cr3dentials', x_auth_mode: 'client_auth'})
         .to_return(body: fixture('invalid_credentials.txt'), headers: {content_type: 'text/plain; charset=utf-8'})
     end
 
