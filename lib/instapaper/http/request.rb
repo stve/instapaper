@@ -60,7 +60,7 @@ module Instapaper
       def fail_if_error_unparseable_response(response)
         response.parse(:json)
       rescue JSON::ParserError
-        fail Instapaper::Error::ServiceUnavailableError
+        raise Instapaper::Error::ServiceUnavailableError
       end
 
       def fail_if_error_in_body(response)

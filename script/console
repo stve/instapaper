@@ -7,7 +7,7 @@ require 'irb'
 require 'irb/completion'
 
 project_lib = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
-$:.unshift project_lib unless $:.include?(project_lib)
+$LOAD_PATH.unshift project_lib unless $LOAD_PATH.include?(project_lib)
 
 require 'instapaper'
 
