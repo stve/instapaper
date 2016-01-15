@@ -11,6 +11,7 @@ module Instapaper
     OAuthError = Class.new(self)
 
     ERRORS = {
+      401  => 'Unauthorized',
       1040 => 'Rate-limit exceeded',
       1041 => 'Premium account required',
       1042 => 'Application is suspended',

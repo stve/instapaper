@@ -49,13 +49,19 @@ module Instapaper
       end
 
       def fail_if_error_response_code(response)
-        fail Instapaper::Error::ServiceUnavailableError if response.status != 200
+        return if response.status == 200
+
+        if Instapaper::Error::CODES.include?(response.status.code)
+          fail Instapaper::Error.from_response(response.status.code, @path)
+        else
+          fail Instapaper::Error::ServiceUnavailableError
+        end
       end
 
       def fail_if_error_unparseable_response(response)
         response.parse(:json)
       rescue JSON::ParserError
-        raise Instapaper::Error::ServiceUnavailableError
+        fail Instapaper::Error::ServiceUnavailableError
       end
 
       def fail_if_error_in_body(response)

@@ -70,4 +70,14 @@ describe Instapaper::Error do
       end
     end
   end
+
+  context 'HTTP errors' do
+    before do
+      stub_post('/api/1.1/oauth/access_token')
+        .to_return(status: 401, body: 'Unauthorized', headers: {})
+    end
+    it 'raises an Instapaper::Error' do
+      expect { @client.access_token('foo', 'bar') }.to raise_error(Instapaper::Error)
+    end
+  end
 end
