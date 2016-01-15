@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# Usage: script/console
+# Starts an IRB console with this library loaded.
+
+require 'bundler/setup'
+require 'irb'
+require 'irb/completion'
+
+project_lib = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+$:.unshift project_lib unless $:.include?(project_lib)
+
+require 'instapaper'
+
+ARGV.clear
+IRB.start
