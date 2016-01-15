@@ -38,7 +38,7 @@ module Instapaper
         raw = @options.delete(:raw)
         @headers = Instapaper::HTTP::Headers.new(@client, @request_method, @uri, @options).request_headers
         options_key = @request_method == :get ? :params : :form
-        response = ::HTTP.with(@headers).public_send(@request_method, @uri.to_s, options_key => @options)
+        response = ::HTTP.headers(@headers).public_send(@request_method, @uri.to_s, options_key => @options)
         fail_if_error(response, raw)
         raw ? response.to_s : parsed_response(response)
       end
