@@ -10,8 +10,7 @@ module Instapaper
   module HTTP
     class Request
       BASE_URL = 'https://www.instapaper.com'
-      attr_accessor :client, :headers, :multipart, :options, :path,
-                    :rate_limit, :request_method, :uri
+      attr_accessor :client, :headers, :options, :path, :request_method, :uri
 
       # @param client [Instapaper::Client]
       # @param request_method [String, Symbol]
