@@ -4,7 +4,7 @@ require 'instapaper/version'
 
 Gem::Specification.new do |spec|
   spec.add_dependency 'addressable', '~> 2.3'
-  spec.add_dependency 'http', '~> 0.9'
+  spec.add_dependency 'http', '~> 1.0'
   spec.add_dependency 'multi_json', '~> 1'
   spec.add_dependency 'simple_oauth', '~> 0.3'
   spec.add_dependency 'virtus', '~> 1'

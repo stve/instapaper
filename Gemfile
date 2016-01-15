@@ -11,10 +11,10 @@ group :development do
 end
 
 group :test do
-  gem 'rspec', '~> 3.2'
-  gem 'webmock', '>= 1.10.1'
+  gem 'rspec', '~> 3'
+  gem 'webmock', '>= 1.22'
   gem 'rubocop', '>= 0.27'
-  gem 'simplecov', '>= 0.9'
+  gem 'simplecov'
 end
 
 gemspec
