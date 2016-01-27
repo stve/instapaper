@@ -19,7 +19,33 @@ describe Instapaper::Error do
     end
   end
 
-  Instapaper::Error::ERRORS.each do |status, exception|
+  Instapaper::Error::CLIENT_ERRORS.each do |status, exception|
+    context "when HTTP status is #{status}" do
+      let(:response_body) { %([{"type":"error", "error_code":#{status}, "message":"Error Message"}]) }
+      before do
+        stub_post('/api/1.1/oauth/access_token')
+          .to_return(status: status, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
+      end
+      it "raises #{exception}" do
+        expect { @client.access_token('foo', 'bar') }.to raise_error(Instapaper::Error::ClientError)
+      end
+    end
+  end
+
+  Instapaper::Error::SERVER_ERRORS.each do |status, exception|
+    context "when HTTP status is #{status}" do
+      let(:response_body) { %([{"type":"error", "error_code":#{status}, "message":"Error Message"}]) }
+      before do
+        stub_post('/api/1.1/oauth/access_token')
+          .to_return(status: status, body: response_body, headers: {content_type: 'application/json; charset=utf-8'})
+      end
+      it "raises #{exception}" do
+        expect { @client.access_token('foo', 'bar') }.to raise_error(Instapaper::Error::ServerError)
+      end
+    end
+  end
+
+  Instapaper::Error::SERVICE_ERRORS.each do |status, exception|
     context "when HTTP status is #{status}" do
       let(:response_body) { %([{"type":"error", "error_code":#{status}, "message":"Error Message"}]) }
       before do
@@ -71,13 +97,13 @@ describe Instapaper::Error do
     end
   end
 
-  context 'HTTP errors' do
-    before do
-      stub_post('/api/1.1/oauth/access_token')
-        .to_return(status: 401, body: 'Unauthorized', headers: {})
-    end
-    it 'raises an Instapaper::Error' do
-      expect { @client.access_token('foo', 'bar') }.to raise_error(Instapaper::Error)
+  describe '.from_response' do
+    context 'with null path' do
+      it 'raises an Instapaper::Error' do
+        error = Instapaper::Error.from_response(5000, nil)
+        expect(error).to be_an Instapaper::Error
+        expect(error.message).to eq('Unknown Error')
+      end
     end
   end
 end

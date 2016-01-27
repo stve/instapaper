@@ -4,14 +4,32 @@ module Instapaper
     # @return [Integer]
     attr_reader :code
 
+    ClientError = Class.new(self)
+    ServerError = Class.new(self)
     ServiceUnavailableError = Class.new(self)
     BookmarkError = Class.new(self)
     FolderError = Class.new(self)
     HighlightError = Class.new(self)
     OAuthError = Class.new(self)
 
-    ERRORS = {
-      401  => 'Unauthorized',
+    CLIENT_ERRORS = {
+      400 => 'Bad Request',
+      401 => 'Unauthorized',
+      402 => 'Payment Required',
+      403 => 'Forbidden',
+      404 => 'Not Found',
+      405 => 'Method Not Allowed',
+    }
+
+    SERVER_ERRORS = {
+      500 => 'Internal Server Error',
+      501 => 'Not Implemented',
+      502 => 'Bad Gateway',
+      503 => 'Service Unavailable',
+      504 => 'Gateway Timeout',
+    }
+
+    SERVICE_ERRORS = {
       1040 => 'Rate-limit exceeded',
       1041 => 'Premium account required',
       1042 => 'Application is suspended',
@@ -43,26 +61,44 @@ module Instapaper
     }
 
     CODES = [
-      ERRORS,
+      CLIENT_ERRORS,
+      SERVER_ERRORS,
+      SERVICE_ERRORS,
       BOOKMARK_ERRORS,
       FOLDER_ERRORS,
       HIGHLIGHT_ERRORS,
     ].collect(&:keys).flatten
+
+    HTTP_ERRORS = CLIENT_ERRORS.merge(SERVER_ERRORS)
 
     # Create a new error from an HTTP response
     #
     # @param response [HTTP::Response]
     # @return [Instapaper::Error]
     def self.from_response(code, path)
-      if ERRORS.keys.include?(code)
-        new(ERRORS[code], code)
+      if (HTTP_ERRORS.keys + SERVICE_ERRORS.keys).include?(code)
+        from_response_code(code)
       else
         case path
         when /highlights/ then HighlightError.new(HIGHLIGHT_ERRORS[code], code)
         when /bookmarks/ then BookmarkError.new(BOOKMARK_ERRORS[code], code)
         when /folders/ then FolderError.new(FOLDER_ERRORS[code], code)
-        else new('Unknown Error Code', code)
+        else new('Unknown Error', code)
         end
+      end
+    end
+
+    # Create a new error from an HTTP response code
+    #
+    # @param code [Integer]
+    # @return [Instapaper::Error]
+    def self.from_response_code(code)
+      if CLIENT_ERRORS.keys.include?(code)
+        ClientError.new(CLIENT_ERRORS[code], code)
+      elsif SERVER_ERRORS.keys.include?(code)
+        ServerError.new(SERVER_ERRORS[code], code)
+      elsif SERVICE_ERRORS.keys.include?(code)
+        new(SERVICE_ERRORS[code], code)
       end
     end
 
