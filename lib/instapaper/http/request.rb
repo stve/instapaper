@@ -1,8 +1,5 @@
 require 'addressable/uri'
 require 'http'
-require 'json'
-require 'net/https'
-require 'openssl'
 require 'instapaper/http/headers'
 require 'instapaper/http/response'
 

@@ -1,3 +1,4 @@
+require 'json'
 require 'instapaper/error'
 
 module Instapaper
