@@ -39,9 +39,9 @@ module Instapaper
         return if response.status.ok?
 
         if Instapaper::Error::CODES.include?(response.status.code)
-          fail Instapaper::Error.from_response(response.status.code, path)
+          raise Instapaper::Error.from_response(response.status.code, path)
         else
-          fail Instapaper::Error, 'Unknown Error'
+          raise Instapaper::Error, 'Unknown Error'
         end
       end
 
@@ -53,10 +53,10 @@ module Instapaper
 
       def fail_if_body_contains_error
         return unless parsed.is_a?(Array)
-        return unless parsed.size > 0
+        return if parsed.empty?
         return unless parsed.first['type'] == 'error'
 
-        fail Instapaper::Error.from_response(parsed.first['error_code'], @path)
+        raise Instapaper::Error.from_response(parsed.first['error_code'], @path)
       end
     end
   end

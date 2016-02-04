@@ -9,7 +9,7 @@ module Instapaper
       def access_token(username, password)
         response = perform_post_with_unparsed_response('/api/1.1/oauth/access_token', x_auth_username: username, x_auth_password: password, x_auth_mode: 'client_auth')
         parsed_response = QLineParser.parse(response)
-        fail Instapaper::Error::OAuthError, parsed_response['error'] if parsed_response.key?('error')
+        raise Instapaper::Error::OAuthError, parsed_response['error'] if parsed_response.key?('error')
         Instapaper::Credentials.new(parsed_response)
       end
     end
