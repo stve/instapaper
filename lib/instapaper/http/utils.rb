@@ -61,9 +61,9 @@ module Instapaper
           response['instapaper_hash'] = response.delete('hash')
         end
         if response.key?('bookmarks')
-          response['bookmarks'] = response['bookmarks'].collect {|bookmark|
+          response['bookmarks'] = response['bookmarks'].collect do |bookmark|
             coerce_hash(bookmark)
-          }
+          end
         end
         response
       end
