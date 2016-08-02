@@ -27,6 +27,11 @@ describe Instapaper::Client::Bookmarks do
         expect(bookmark).to be_an Instapaper::Bookmark
       end
     end
+
+    it 'coerces bookmarks correctly' do
+      list = client.bookmarks
+      expect(list.bookmarks.first.instapaper_hash).to_not be_nil
+    end
   end
 
   describe '#update_read_progress' do
