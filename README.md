@@ -1,7 +1,14 @@
-# Instapaper [![Build Status](https://secure.travis-ci.org/stve/instapaper.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/stve/instapaper.png?travis)][gemnasium]
+# Instapaper
 
-[travis]: http://travis-ci.org/stve/instapaper
+[![Gem Version](http://img.shields.io/gem/v/instapaper.svg)][gem]
+[![Build Status](http://img.shields.io/travis/stve/instapaper.svg)][travis]
+[![Dependency Status](http://img.shields.io/gemnasium/stve/instapaper.svg)][gemnasium]
+[![Code Climate](http://img.shields.io/codeclimate/github/stve/instapaper.svg)][codeclimate]
+
+[gem]: https://rubygems.org/gems/instapaper
+[travis]: https://travis-ci.org/stve/instapaper
 [gemnasium]: https://gemnasium.com/stve/instapaper
+[codeclimate]: https://codeclimate.com/github/stve/instapaper
 
 
 Instapaper is a ruby wrapper for interacting with [Instapaper's Full API](https://www.instapaper.com/api/full).  Note that access to the Full API is restricted to Instapaper subscribers only.
