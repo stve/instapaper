@@ -6,6 +6,11 @@ AllCops:
     - 'spec/**/*.rb'
   DisplayCopNames: true
 
+Metrics/BlockLength:
+  Max: 36
+  Exclude:
+    - spec/**/*.rb
+
 Metrics/BlockNesting:
   Max: 2
 
@@ -34,7 +39,13 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/MutableConstant:
+  Enabled: false
+
+Style/NumericPredicate:
   Enabled: false
 
 Style/SpaceInsideHashLiteralBraces:
