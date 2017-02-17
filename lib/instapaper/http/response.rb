@@ -38,7 +38,7 @@ module Instapaper
       def fail_if_http_error
         return if response.status.ok?
 
-        if Instapaper::Error::CODES.include?(response.status.code)
+        if Instapaper::Error::CODES.include?(response.status.code) # rubocop:disable Style/GuardClause
           raise Instapaper::Error.from_response(response.status.code, path)
         else
           raise Instapaper::Error, 'Unknown Error'
