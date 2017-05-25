@@ -16,9 +16,11 @@ module Instapaper
     # @param options [Hash]
     # @return [Instapaper::Client]
     def initialize(options = {})
-      options.each do |key, value|
-        instance_variable_set("@#{key}", value)
-      end
+      @oauth_token = options[:oauth_token]
+      @oauth_token_secret = options[:oauth_token_secret]
+      @consumer_key = options[:consumer_key]
+      @consumer_secret = options[:consumer_secret]
+      @proxy = options[:proxy]
       yield(self) if block_given?
     end
 
