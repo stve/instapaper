@@ -2,12 +2,10 @@
 
 [![Gem Version](http://img.shields.io/gem/v/instapaper.svg)][gem]
 [![Build Status](http://img.shields.io/travis/stve/instapaper.svg)][travis]
-[![Dependency Status](http://img.shields.io/gemnasium/stve/instapaper.svg)][gemnasium]
-[![Code Climate](http://img.shields.io/codeclimate/github/stve/instapaper.svg)][codeclimate]
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/stve/instapaper.svg)][codeclimate]
 
 [gem]: https://rubygems.org/gems/instapaper
 [travis]: https://travis-ci.org/stve/instapaper
-[gemnasium]: https://gemnasium.com/stve/instapaper
 [codeclimate]: https://codeclimate.com/github/stve/instapaper
 
 
