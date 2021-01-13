@@ -1,11 +1,9 @@
 language: ruby
 
 rvm:
-  - 2.0.0
-  - 2.1
-  - 2.2
-  - 2.3.3
-  - 2.4.0
+  - 2.6.0
+  - 2.7.0
+  - 3.0.0
   - jruby-9.1.7.0
   - ruby-head
 
@@ -23,7 +21,5 @@ env:
 
 matrix:
   allow_failures:
-    - rvm: jruby-head
-    - rvm: rbx-2
     - rvm: ruby-head
   fast_finish: true
