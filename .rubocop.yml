@@ -5,6 +5,7 @@ AllCops:
     - 'lib/**/*.rb'
     - 'spec/**/*.rb'
   DisplayCopNames: true
+  NewCops: enable
 
 Metrics/BlockLength:
   Max: 36
@@ -54,7 +55,10 @@ Layout/SpaceInsideHashLiteralBraces:
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: 'comma'
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
 
 Style/FileName:
