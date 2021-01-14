@@ -5,7 +5,9 @@ module Instapaper
   module HTTP
     class Response
       attr_reader :response, :raw_format, :path
-      def initialize(response, path, raw_format = false)
+
+      # TODO: Change this to a keyword argument (needs a major version bump)
+      def initialize(response, path, raw_format = false) # rubocop:disable Style/OptionalBooleanParameter
         @response = response
         @path = path
         @raw_format = raw_format
@@ -28,9 +30,9 @@ module Instapaper
       private
 
       def parsed
-        @parsed_response ||= begin
+        @parsed ||= begin
           response.parse(:json)
-        rescue
+        rescue StandardError
           response.body
         end
       end

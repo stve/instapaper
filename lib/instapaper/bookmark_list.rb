@@ -13,8 +13,8 @@ module Instapaper
       attribute :delete_ids, Array[Integer]
     end
 
-    def each
-      bookmarks.each { |bookmark| yield(bookmark) }
+    def each(&block)
+      bookmarks.each(&block)
     end
   end
 end
