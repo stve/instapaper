@@ -57,9 +57,7 @@ module Instapaper
       end
 
       def coerce_hash(response)
-        if response.key?('hash')
-          response['instapaper_hash'] = response.delete('hash')
-        end
+        response['instapaper_hash'] = response.delete('hash') if response.key?('hash')
         if response.key?('bookmarks')
           response['bookmarks'] = response['bookmarks'].collect do |bookmark|
             coerce_hash(bookmark)

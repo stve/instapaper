@@ -1,4 +1,4 @@
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'instapaper/version'
 
@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'multi_json', '~> 1'
   spec.add_dependency 'simple_oauth', '~> 0.3'
   spec.add_dependency 'virtus', '~> 1'
-  spec.add_development_dependency 'bundler', '~> 1.0'
+  spec.add_development_dependency 'bundler'
   spec.author        = 'Steve Agalloco'
   spec.description   = "Ruby Client for Instapaper's Full API"
   spec.email         = 'steve.agalloco@gmail.com'
