@@ -10,7 +10,7 @@ describe Instapaper::HTTP::Request do
           .to_return(status: 503, body: '', headers: {content_type: 'application/json; charset=utf-8'})
       end
       it 'raises a ServerError' do
-        expect { client.folders }.to raise_error(Instapaper::Error::ServerError)
+        expect { client.folders }.to raise_error(Instapaper::Error::ServiceUnavailableError)
       end
     end
 
