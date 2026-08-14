@@ -24,7 +24,7 @@ module Instapaper
       # Delete a highlight
       # @param highlight_id [String, Integer]
       # @return [Boolean]
-      def delete_highlight(highlight_id, options = {})
+      def delete_highlight(highlight_id, options = {}) # rubocop:disable Naming/PredicateMethod
         perform_post_with_unparsed_response("/api/1.1/highlights/#{highlight_id}/delete", options)
         true
       end
