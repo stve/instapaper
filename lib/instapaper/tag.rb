@@ -1,12 +1,9 @@
-require 'virtus'
+require 'instapaper/struct'
+require 'instapaper/types'
 
 module Instapaper
-  class Tag
-    include Virtus.value_object
-
-    values do
-      attribute :id, Integer
-      attribute :name, String
-    end
+  class Tag < Instapaper::Struct
+    attribute? :id, Types::Coercible::Integer.optional.default(nil)
+    attribute? :name, Types::Coercible::String.optional.default(nil)
   end
 end

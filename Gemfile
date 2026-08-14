@@ -7,6 +7,7 @@ gem 'jruby-openssl', platforms: :jruby
 gem 'json', platforms: :mri_19
 
 group :development do
+  gem 'bundler'
   gem 'kramdown'
 end
 

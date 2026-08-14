@@ -42,7 +42,7 @@ module Instapaper
       # @param klass [Class]
       def perform_request_with_object(request_method, path, options, klass)
         response = perform_request(request_method, path, options)
-        response = response.is_a?(Array) ? response.first : response
+        response = response.first if response.is_a?(Array)
         klass.new(coerce_hash(response))
       end
 

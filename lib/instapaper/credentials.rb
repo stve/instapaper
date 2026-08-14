@@ -1,12 +1,9 @@
-require 'virtus'
+require 'instapaper/struct'
+require 'instapaper/types'
 
 module Instapaper
-  class Credentials
-    include Virtus.value_object
-
-    values do
-      attribute :oauth_token, String
-      attribute :oauth_token_secret, String
-    end
+  class Credentials < Instapaper::Struct
+    attribute? :oauth_token, Types::Coercible::String.optional.default(nil)
+    attribute? :oauth_token_secret, Types::Coercible::String.optional.default(nil)
   end
 end
