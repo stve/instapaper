@@ -10,7 +10,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        ruby: [ '2.6', '2.7', '3.0' ]
+        ruby: [ '3.3', '3.4', '4.0' ]
 
     name: Tests - Ruby ${{ matrix.ruby }}
     # Set the type of machine to run on
@@ -19,9 +19,9 @@ jobs:
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v5
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
