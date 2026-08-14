@@ -10,6 +10,7 @@ module Instapaper
       # @option folder_id: Optional. Possible values are unread (default), starred, archive, or a folder_id value from /api/1.1/folders/list.
       # @option have: Optional. A concatenation of bookmark_id values that the client already has from the specified folder. See below.
       # @option highlights: Optional. A '-' delimited list of highlight IDs that the client already has from the specified bookmarks.
+      # @option tag: Optional. Tag name to filter the returned bookmarks. Only used when folder_id is not provided.
       def bookmarks(options = {})
         perform_post_with_object('/api/1.1/bookmarks/list', options, Instapaper::BookmarkList)
       end
@@ -24,6 +25,10 @@ module Instapaper
 
       # Adds a new unread bookmark to the user's account.
       # @param url [String] The url of the bookmark.
+      # @option options [String] :title Optional. If omitted, the title will be looked up by Instapaper synchronously.
+      # @option options [String] :description Optional. A brief, plaintext description or summary of the article.
+      # @option options [Integer] :folder_id Optional. The folder to add the bookmark to.
+      # @option options [String] :tags Optional. JSON array of tags, e.g. [{"name":"Reading List"}]. Tags will be created if they do not already exist.
       def add_bookmark(url, options = {})
         perform_post_with_object('/api/1.1/bookmarks/add', options.merge(url: url), Instapaper::Bookmark)
       end
