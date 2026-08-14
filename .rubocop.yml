@@ -15,7 +15,7 @@ Metrics/BlockLength:
 Metrics/BlockNesting:
   Max: 2
 
-Metrics/LineLength:
+Layout/LineLength:
   AllowURI: true
   Enabled: false
 
@@ -61,7 +61,7 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
 
-Style/FileName:
+Naming/FileName:
   Exclude:
     - Rakefile
     - Gemfile
