@@ -1,7 +1,7 @@
 unless ENV['CI']
   require 'simplecov'
   SimpleCov.start do
-    add_filter '/spec/'
+    skip '/spec/'
   end
 end
 
