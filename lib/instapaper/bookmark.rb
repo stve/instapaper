@@ -1,4 +1,5 @@
 require 'virtus'
+require 'instapaper/tag'
 
 module Instapaper
   class Bookmark
@@ -16,6 +17,7 @@ module Instapaper
       attribute :progress, String
       attribute :starred, String
       attribute :type, String
+      attribute :tags, Array[Instapaper::Tag]
     end
   end
 end

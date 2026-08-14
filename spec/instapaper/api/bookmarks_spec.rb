@@ -32,6 +32,12 @@ describe Instapaper::Client::Bookmarks do
       list = client.bookmarks
       expect(list.bookmarks.first.instapaper_hash).to_not be_nil
     end
+
+    it 'coerces tags into Instapaper::Tag objects' do
+      list = client.bookmarks
+      expect(list.bookmarks.first.tags).to all be_an Instapaper::Tag
+      expect(list.bookmarks.first.tags.first.name).to eq('Ruby')
+    end
   end
 
   describe '#update_read_progress' do
@@ -61,14 +67,20 @@ describe Instapaper::Client::Bookmarks do
     end
 
     it 'gets the correct resource' do
-      client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
-      expect(a_post('/api/1.1/bookmarks/add').with(body: {url: 'http://someurl.com', title: 'This is the title', description: 'This is the description'}))
+      client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description', tags: [{name: 'Design'}].to_json)
+      expect(a_post('/api/1.1/bookmarks/add').with(body: {url: 'http://someurl.com', title: 'This is the title', description: 'This is the description', tags: [{name: 'Design'}].to_json}))
         .to have_been_made
     end
 
     it 'returns the bookmark on success' do
       bookmark = client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
       expect(bookmark).to be_an Instapaper::Bookmark
+    end
+
+    it 'coerces tags into Instapaper::Tag objects' do
+      bookmark = client.add_bookmark('http://someurl.com', title: 'This is the title', description: 'This is the description')
+      expect(bookmark.tags).to all be_an Instapaper::Tag
+      expect(bookmark.tags.first.name).to eq('Design')
     end
   end
 
