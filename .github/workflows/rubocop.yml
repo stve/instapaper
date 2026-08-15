@@ -5,14 +5,31 @@ on:
     branches: [ '**' ]
 
 jobs:
-  build:
+  tests:
+    strategy:
+      matrix:
+        ruby: [ '3.4', '4.0' ]
+
+    name: Tests - Ruby ${{ matrix.ruby }}
+    # Set the type of machine to run on
     runs-on: ubuntu-latest
+
     steps:
 
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Run Rubocop
-        uses: luizfonseca/github-actions-rubocop@2.0.0
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+
+      - name: Bundle install
+        run: |
+          bundle config set without 'development'
+          bundle install --jobs 4 --retry 3
+
+      - name: Run rubocop
+        run: |
+          bundle exec rubocop
