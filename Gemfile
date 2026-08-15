@@ -13,7 +13,9 @@ end
 
 group :test do
   gem 'rspec', '~> 3'
-  gem 'rubocop', '>= 0.27'
+  gem 'rubocop', '>= 0.27', require: false
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-rspec', require: false
   gem 'simplecov'
   gem 'webmock', '>= 1.22'
 end

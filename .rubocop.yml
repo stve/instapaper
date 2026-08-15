@@ -1,3 +1,7 @@
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
+
 AllCops:
   Include:
     - './Rakefile'
@@ -65,3 +69,12 @@ Naming/FileName:
   Exclude:
     - Rakefile
     - Gemfile
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
