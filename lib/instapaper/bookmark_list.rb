@@ -13,8 +13,8 @@ module Instapaper
     attribute? :highlights, Types::Array.of(Instapaper::Highlight).default([].freeze)
     attribute? :delete_ids, Types::Array.of(Types::Coercible::Integer).default([].freeze)
 
-    def each(&block)
-      bookmarks.each(&block)
+    def each(&)
+      bookmarks.each(&)
     end
   end
 end
