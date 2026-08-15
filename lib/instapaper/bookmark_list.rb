@@ -6,6 +6,8 @@ require 'instapaper/user'
 
 module Instapaper
   class BookmarkList < Instapaper::Struct
+    include Enumerable
+
     attribute? :user, Instapaper::User.optional.default(nil)
     attribute? :bookmarks, Types::Array.of(Instapaper::Bookmark).default([].freeze)
     attribute? :highlights, Types::Array.of(Instapaper::Highlight).default([].freeze)

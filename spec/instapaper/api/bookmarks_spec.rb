@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Instapaper::Client::Bookmarks do
-  let(:client) { Instapaper::Client.new(consumer_key: 'CK', consumer_secret: 'CS', oauth_token: 'OT', oauth_token_secret: 'OS') }
+  let(:client) do
+    Instapaper::Client.new(consumer_key: 'CK', consumer_secret: 'CS', oauth_token: 'OT', oauth_token_secret: 'OS')
+  end
 
   describe '#bookmarks' do
     before do
@@ -23,14 +25,12 @@ describe Instapaper::Client::Bookmarks do
     it 'includes all objects in the response' do
       list = client.bookmarks
       expect(list.user).to be_an Instapaper::User
-      list.bookmarks.each do |bookmark|
-        expect(bookmark).to be_an Instapaper::Bookmark
-      end
+      expect(list.bookmarks).to all(be_an Instapaper::Bookmark)
     end
 
     it 'coerces bookmarks correctly' do
       list = client.bookmarks
-      expect(list.bookmarks.first.instapaper_hash).to_not be_nil
+      expect(list.bookmarks.first.instapaper_hash).not_to be_nil
     end
 
     it 'coerces tags into Instapaper::Tag objects' do
@@ -41,20 +41,21 @@ describe Instapaper::Client::Bookmarks do
   end
 
   describe '#update_read_progress' do
+    let!(:time) { Time.now }
+
     before do
-      @time = Time.now
       stub_post('/api/1.1/bookmarks/update_read_progress')
         .to_return(body: fixture('bookmarks_update_read_progress.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
     it 'gets the correct resource' do
-      client.update_read_progress(123, 0.5, @time)
-      expect(a_post('/api/1.1/bookmarks/update_read_progress').with(body: {bookmark_id: '123', progress: '0.5', progress_timestamp: @time.to_i.to_s}))
+      client.update_read_progress(123, 0.5, time)
+      expect(a_post('/api/1.1/bookmarks/update_read_progress').with(body: {bookmark_id: '123', progress: '0.5', progress_timestamp: time.to_i.to_s}))
         .to have_been_made
     end
 
     it 'returns an array containing bookmarks on success' do
-      bookmark = client.update_read_progress(123, 0.5, @time)
+      bookmark = client.update_read_progress(123, 0.5, time)
       expect(bookmark).to be_an Instapaper::Bookmark
       expect(bookmark.progress).to eq('0.5')
     end
